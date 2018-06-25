@@ -1,0 +1,5 @@
+export { default as SettingTitle } from './SettingTitle'
+export { default as SettingQrcode } from './SettingQrcode'
+export { default as SettingClock } from './SettingClock'
+export { default as SettingBarrage } from './SettingBarrage'
+export { default as SettingImage } from './SettingImage'
