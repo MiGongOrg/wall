@@ -5,7 +5,7 @@
       :is="item.name"
       :index="item.index"
     ></div>
-    <div class="close-feature-setting">
+    <div class="close-feature-setting" @click="closeSetting">
       <font-awesome-icon :icon="['fas','times']"/>
     </div>
   </div>
@@ -36,6 +36,11 @@ export default {
     settingNav () {
       return this.$store.state.app.setting.nav
     }
+  },
+  methods: {
+     closeSetting () {
+      this.$store.dispatch('SettingNav', '')
+     }
   }
 }
 </script>
