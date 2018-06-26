@@ -23,7 +23,6 @@ export default {
       
     }
   },
-
   components: {
     SettingTitle,
     SettingQrcode,
@@ -38,9 +37,9 @@ export default {
     }
   },
   methods: {
-     closeSetting () {
+    closeSetting () {
       this.$store.dispatch('SettingNav', '')
-     }
+    }
   }
 }
 </script>
