@@ -1,20 +1,18 @@
 <template>
   <div class="app-wrapper">
-    <background-image></background-image>
-    <background-video></background-video>
+    <background></background>
     <div class="app-container">
       <div class="main-container">
-        <menu-nav></menu-nav>
         <wall></wall>
         <sidebar></sidebar>
-        <feature-setting></feature-setting>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Menu, Sidebar, Wall, BackgroundImage, BackgroundVideo, FeatureSetting } from './components'
+import { Sidebar, Wall } from './components'
+import { Background } from '@/components/Background'
 
 export default {
   data () {
@@ -24,12 +22,9 @@ export default {
   },
   name: 'layout',
   components: {
-    menuNav: Menu,
     Sidebar,
     Wall,
-    BackgroundImage,
-    BackgroundVideo,
-    FeatureSetting
+    Background,
   },
   created () {
     var loading = document.getElementById('Loading')

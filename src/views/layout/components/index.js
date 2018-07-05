@@ -1,7 +1,2 @@
 export { default as Wall } from './Wall'
 export { default as Sidebar } from './Sidebar'
-export { default as Menu } from './Menu'
-export { default as FeatureSetting } from './FeatureSetting'
-export { default as FeatureModule } from './FeatureModule'
-export { default as BackgroundImage } from './BackgroundImage'
-export { default as BackgroundVideo } from './BackgroundVideo'

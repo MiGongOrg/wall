@@ -4,6 +4,9 @@ import app from './modules/app'
 import qrcode from './modules/qrcode'
 import barrage from './modules/barrage'
 import image from './modules/image'
+import title from './modules/title'
+import clock from './modules/clock'
+import background from './modules/background'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -14,7 +17,10 @@ const store = new Vuex.Store({
     app,
     qrcode,
     barrage,
-    image
+    image,
+    title,
+    clock,
+    background
   },
   getters
 })

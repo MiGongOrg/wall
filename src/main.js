@@ -15,7 +15,8 @@ import brands from '@fortawesome/fontawesome-free-brands'
 import 'normalize.css/normalize.css'
 
 // 按需引入 Element UI 组件
-import { Slider, Input, Switch, Upload, Button, Tabs, TabPane, Radio, RadioGroup, Notification } from 'element-ui'
+import { Slider, Input, Switch, Upload, Button, Tabs, TabPane, Radio, RadioGroup, ButtonGroup, Select, Option, Notification } from 'element-ui'
+import './styles/element-variables.scss'
 // 初始化 Size
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }
 Vue.prototype.$notify = Notification
@@ -28,7 +29,10 @@ Vue.use(Button)
 Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Radio)
+Vue.use(Select)
+Vue.use(Option)
 Vue.use(RadioGroup)
+Vue.use(ButtonGroup)
 
 /* color 选择器 */
 import { chrome } from 'vue-color'

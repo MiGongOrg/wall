@@ -125,9 +125,9 @@
   version "0.0.22"
   resolved "https://registry.yarnpkg.com/@fortawesome/vue-fontawesome/-/vue-fontawesome-0.0.22.tgz#720457bda0e5866265e5e0f8fe4fbd857fa5653f"
 
-"@mvpleung/flipclock@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@mvpleung/flipclock/-/flipclock-0.0.4.tgz#186d7a75993fdfaa99e19a91aa2dca9815a5a700"
+"@mvpleung/flipclock@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@mvpleung/flipclock/-/flipclock-0.0.5.tgz#09712f128c3bbc1004bd5bdfac53ee36e6ad12a2"
 
 abbrev@1:
   version "1.1.1"
@@ -6367,6 +6367,10 @@ tar@^4:
 text-table@^0.2.0, text-table@~0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
+
+three@^0.93.0:
+  version "0.93.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.93.0.tgz#3fd6c367ef4554abbb6e16ad69936283e895c123"
 
 throttle-debounce@^1.0.1:
   version "1.1.0"

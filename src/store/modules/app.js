@@ -24,41 +24,14 @@ const app = {
       colNum: 100,
       init: [
         {
-          "x":0,"y":0,"w":100,"h":0,"i":"0",
-          "editStart": true,
-          "feature": [{
-            "component": 'FeatureDefault',
-            "id": "a"
+          'x': 0, 'y': 0, 'w': 100, 'h': 0, 'i': '0',
+          'editStart': true,
+          'feature': [{
+            'component': 'FeatureDefault',
+            'id': "a"
           }],
-          "setting": [{}],
-        },
-        {
-          "x":0,"y":0,"w":80,"h":0,"i":"1",
-          "editStart": false,
-          "feature": [{
-            "component": 'FeatureDefault',
-            "id": "b"
-          }],
-          "setting": [{}],
-        },
-        {
-          "x":80,"y":0,"w":20,"h":0,"i":"2",
-          "editStart": false,
-          "feature": [{
-            "component": 'FeatureDefault',
-            "id": "c"
-          }],
-          "setting": [{}],
-        },
-        {
-          "x":80,"y":0,"w":20,"h":0,"i":"3",
-          "editStart": false,
-          "feature": [{
-            "component": 'FeatureDefault',
-            "id": "d"
-          }],
-          "setting": [{}],
-        },
+          'setting': [{}],
+        }
       ]
     },
     setting: {
@@ -148,17 +121,7 @@ const app = {
       }
 
     },
-    // 设置背景视频URL
-    SET_VIDEO_BG_URL (state, value) {
-      state.setting.global.backgroundVideo.url = value
-    },
-    // 设置背景图片URL
-    SET_IMAGE_BG_URL (state, value) {
-      state.setting.global.backgroundImage.urls = value
-    },
-    SET_IMAGE_BG_INDEX (state, index) {
-      state.setting.global.backgroundImage.index = index
-    },
+    
     // SET_IMAGE_BG_DELAY (state, value) {
     //   state.setting.global.backgroundImage.delay = value
     // },
@@ -200,19 +163,10 @@ const app = {
     SET_SETTING_NAV (state, value) {
       state.setting.nav = value
     },
-    SET_TITLE_BG_COLOR (state, value) {
-      console.log(value.rgbaStr)
-      state.layout.init[value.index].setting[0].rgba = value.rgba
-      state.layout.init[value.index].setting[0].rgbaStr = value.rgbaStr
-    },
+    
     SET_CONTAINER_BG_COLOR (state, value) {
       state.setting.global.backgroundColor.rgba = value.rgba
       state.setting.global.backgroundColor.rgbaStr = value.rgbaStr
-    },
-    SET_CLOCK_TIME (state, value) {
-      state.layout.init[value.index].setting[0].options = value.options
-      state.layout.init[value.index].setting[0].diff = value.diff
-      console.log(state.layout.init[value.index].setting[0])
     }
   },
   actions: {
@@ -227,17 +181,6 @@ const app = {
     // 侧边栏功能模块
     SidebarModule ({commit}, value) {
       commit('SET_SIDEBAR_MODULE', value)
-    },
-    // 背景视频地址
-    VideoBgUrl ({commit}, value) {
-      commit('SET_VIDEO_BG_URL', value)
-    },
-    // 背景图片地址
-    ImageBgUrl ({commit}, value) {
-      commit('SET_IMAGE_BG_URL', value)
-    },
-    ImageBgIndex ({commit}, index) {
-      commit('SET_IMAGE_BG_INDEX', index)
     },
     // ImageBgDelay ({commit}, value) {
     //   commit('SET_IMAGE_BG_DELAY', value)
@@ -261,17 +204,9 @@ const app = {
     SettingNav ({commit}, value) {
       commit('SET_SETTING_NAV', value)
     },
-    // 设置标题背景颜色
-    SettingTitleBgColor ({commit}, value) {
-      console.log(value)
-      commit('SET_TITLE_BG_COLOR', value)
-    },
     // 设置容器背景颜色
     SettingContainerBgColor ({commit}, value) {
       commit('SET_CONTAINER_BG_COLOR', value)
-    },
-    SettingClockTime ({commit}, value) {
-      commit('SET_CLOCK_TIME', value)
     }
   }
 }
