@@ -55,6 +55,12 @@ export default {
 
       return Math.floor(h / (rowHeight + margin))
     },
+    emptyContainer () {
+      let eventList = document.querySelectorAll('.feature-drag-item')
+      eventList.forEach((item, index) => {
+        item.innerHTML = ''
+      })
+    },
     one () {
       this.active_el = 1
       let val = [
@@ -72,6 +78,8 @@ export default {
           "setting": [{}],
         }
       ]
+
+      this.emptyContainer()
 
       // 初始化高度
       val[0].h = this.resize()
@@ -108,6 +116,8 @@ export default {
           "setting": [{}],
         }
       ]
+
+      this.emptyContainer()
 
       let h = this.resize()
       // 初始化高度
@@ -161,6 +171,8 @@ export default {
           "setting": [{}],
         }
       ]
+
+      this.emptyContainer()
 
       let h = this.resize(topHeight)
 
@@ -228,6 +240,8 @@ export default {
           "setting": [{}],
         }
       ]
+
+      this.emptyContainer()
 
       let h = this.resize(topHeight)
 

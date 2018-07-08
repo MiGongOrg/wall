@@ -1,11 +1,15 @@
 <template>
   <div class="feature-image">
-    <swiper :options="swiperOption" ref="image" :class="{autoSize:image.size}">
-      <swiper-slide v-for="item in image.urls" :key="item.name" :data-swiper-autoplay="image.delay">
-        <img :src="item.url" :name="item.name">
-      </swiper-slide>
-    </swiper>
-    <feature-setting :parentId="parentId" :settingName="settingName"></feature-setting>
+    <fs ref="fullscreenImage" @change="fullscreenChange" :background="fsbackground" class="full-screen">
+      <div class="full-screen-content">
+        <swiper :options="swiperOption" ref="image" :class="{autoSize:image.size}">
+          <swiper-slide v-for="item in image.urls" :key="item.name" :data-swiper-autoplay="image.delay">
+            <img :src="item.url" :name="item.name">
+          </swiper-slide>
+        </swiper>
+        <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
+      </div>
+    </fs>
   </div>
 </template>
 
@@ -22,6 +26,8 @@ export default {
   data () {
     return {
       settingName: 'SettingImage',
+      fsbackground: '#fff',
+      fullscreen: false,
       swiperOption: {
         autoplay: false,
         allowTouchMove: false,
@@ -45,7 +51,13 @@ export default {
     }
   },
   methods: {
-    
+    // 全屏
+    toggleFullScreen () {
+      this.$refs['fullscreenImage'].toggle()
+    },
+    fullscreenChange (fullscreen) {
+      this.fullscreen = fullscreen
+    },
   },
   watch: {
     'image.autoplay': {

@@ -27,14 +27,14 @@ export default {
   props: ['parentId', 'settingName'],
   methods: {
     fullscreen () {
-      console.log('全屏')
+      this.$emit('toggleFullScreen')
     },
     setting () {
       let val = [{ component: this.settingName }]
       this.$store.dispatch('SidebarModule', val)
     },
     close () {
-      // document.getElementById(this.parentId).innerHTML = ''
+      document.getElementById(this.parentId).innerHTML = ''
       // 清空该容器内的功能模块，设置为 default
       this.$store.dispatch('ClearFeature', this.parentId)
     }

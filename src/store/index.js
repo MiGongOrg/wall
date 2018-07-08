@@ -7,6 +7,8 @@ import image from './modules/image'
 import title from './modules/title'
 import clock from './modules/clock'
 import background from './modules/background'
+import video from './modules/video'
+import iframe from './modules/iframe'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -20,7 +22,9 @@ const store = new Vuex.Store({
     image,
     title,
     clock,
-    background
+    background,
+    video,
+    iframe
   },
   getters
 })

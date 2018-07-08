@@ -27,7 +27,7 @@ const app = {
           'x': 0, 'y': 0, 'w': 100, 'h': 0, 'i': '0',
           'editStart': true,
           'feature': [{
-            'component': 'FeatureDefault',
+            'component': 'FeatureTitle',
             'id': "a"
           }],
           'setting': [{}],

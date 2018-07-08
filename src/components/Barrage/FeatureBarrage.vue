@@ -1,12 +1,16 @@
 <template>
   <div class="feature-barrage">
-    <barrage
-      :isShow="barrageIsShow"
-      :barrageList="barrageList"
-      :loop="barrage.loop"
-    >
-    </barrage>
-    <feature-setting :parentId="parentId" :settingName="settingName"></feature-setting>
+    <fs ref="fullscreenBarrage" @change="fullscreenChange" :background="fsbackground" class="full-screen">
+      <div class="full-screen-content">
+        <barrage
+          :isShow="barrageIsShow"
+          :barrageList="barrageList"
+          :loop="barrage.loop"
+        >
+        </barrage>
+        <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
+      </div>
+    </fs>
   </div>
 </template>
 
@@ -22,6 +26,8 @@ export default {
   data () {
     return {
       settingName: 'SettingBarrage',
+      fsbackground: '#fff',
+      fullscreen: false,
       msg: 'Hello vue-baberrage',
       barrageIsShow: true,
       currentId : 0,
@@ -50,6 +56,13 @@ export default {
     }
   },
   methods: {
+    // 全屏
+    toggleFullScreen () {
+      this.$refs['fullscreenBarrage'].toggle()
+    },
+    fullscreenChange (fullscreen) {
+      this.fullscreen = fullscreen
+    },
     // 没有记录时，初始化内容
     initList () {
       this.barrageList.push({

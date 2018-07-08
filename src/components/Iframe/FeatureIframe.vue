@@ -1,12 +1,8 @@
 <template>
-  <div class="feature-clock">
-    <fs ref="fullscreenClock" @change="fullscreenChange" :background="fsbackground" class="full-screen">
+  <div class="feature-iframe">
+    <fs ref="fullscreenIframe" @change="fullscreenChange" :background="fsbackground" class="full-screen">
       <div class="full-screen-content">
-        <flip-clock
-          ref="flipclock"
-          :options="clock.options"
-        ></flip-clock>
-
+        <iframe :src="iframe.url" frameborder="0"></iframe>
         <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
       </div>
     </fs>
@@ -14,37 +10,33 @@
 </template>
 
 <script>
-import { FlipClock } from '@mvpleung/flipclock'
-import { FeatureSetting } from '@/components/Setting'
 import { mapGetters } from 'vuex'
-
+import { FeatureSetting } from '@/components/Setting'
 export default {
 
-  name: 'FeatureClock',
+  name: 'FeatureIframe',
 
   data () {
     return {
-      settingName: 'SettingClock',
+      settingName: 'SettingIframe',
       fsbackground: '#fff',
       fullscreen: false,
     }
   },
-
   components: {
-    FlipClock,
     FeatureSetting
   },
   props: ['parentId', 'index'],
   computed: {
-    ...mapGetters(['clock']),
-    clock () {
-      return this.$store.state.clock
+    ...mapGetters(['iframe']),
+    iframe () {
+      return this.$store.state.iframe
     }
   },
   methods: {
     // 全屏
     toggleFullScreen () {
-      this.$refs['fullscreenClock'].toggle()
+      this.$refs['fullscreenIframe'].toggle()
     },
     fullscreenChange (fullscreen) {
       this.fullscreen = fullscreen
@@ -54,12 +46,10 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .feature-clock {
-    .flip-clock-wrapper {
-      div.inn {
-        color: #ccc;
-        background-color: #333;
-      }
-    } 
+  .feature-iframe {
+    iframe {
+      height: 100%;
+      width: 100%;
+    }
   }
 </style>

@@ -17,6 +17,8 @@ import { SettingQrcode } from '@/components/Qrcode'
 import { SettingImage } from '@/components/Image'
 import { SettingClock } from '@/components/Clock'
 import { SettingBarrage } from '@/components/Barrage'
+import { SettingVideo } from '@/components/Video'
+import { SettingIframe } from '@/components/Iframe'
 
 export default {
 
@@ -35,7 +37,9 @@ export default {
     SettingQrcode,
     SettingClock,
     SettingBarrage,
-    SettingImage
+    SettingImage,
+    SettingVideo,
+    SettingIframe
   },
   // 在 DOM 加载后马上执行
   computed: {

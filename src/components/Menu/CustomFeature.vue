@@ -50,6 +50,22 @@
           <p>弹幕</p>
         </div>
       </li>
+      <li id="FeatureVideo">
+        <div class="feature-button-container">
+          <p class="icon-image feature-video-icon">
+            <img src="./images/icon-feature-video.png">
+          </p>
+          <p>视频</p>
+        </div>
+      </li>
+      <li id="FeatureIframe">
+        <div class="feature-button-container">
+          <p class="icon-image feature-iframe-icon">
+            <img src="./images/icon-feature-iframe.png">
+          </p>
+          <p>iframe</p>
+        </div>
+      </li>
     </ul>
     <p class="prompt">拖拽功能图标到左侧容器内</p>
   </div>

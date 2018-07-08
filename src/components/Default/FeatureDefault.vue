@@ -26,6 +26,8 @@ export default {
 <style rel="stylesheet/scss" lang="scss">
   .feature-default {
     .prompt {
+      text-align: center;
+      padding: 10px;
       color: #464646;
       font-size: 12px;
     }

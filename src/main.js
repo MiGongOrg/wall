@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Wilddog from 'wilddog'
 import WildVue from 'wildvue'
 
+import fullscreen from 'vue-fullscreen'
+
 import App from './App'
 import router from './router'
 import store from './store'
@@ -46,6 +48,8 @@ fontawesome.library.add(regular)
 fontawesome.library.add(brands)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+Vue.use(fullscreen, {name: 'fs'})
 
 /* 野狗云 */
 

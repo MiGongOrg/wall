@@ -7,18 +7,21 @@
       :index="index"
     >
     </div>
-    <ul class="feature-drag-item" :id="brick.feature[0].id" v-if="brick.feature[0].component === 'FeatureDefault' " :style="{ backgroundColor: `rgba(${global.backgroundColor.rgbaStr})`}"></ul>
+    <ul class="feature-drag-item" :id="brick.feature[0].id" v-show="brick.feature[0].component === 'FeatureDefault' " :style="{ backgroundColor: `rgba(${global.backgroundColor.rgbaStr})`}"></ul>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
+import { FeatureDefault } from '@/components/Default'
 import { FeatureTitle } from '@/components/Title'
 import { FeatureQrcode } from '@/components/Qrcode'
 import { FeatureImage } from '@/components/Image'
 import { FeatureClock } from '@/components/Clock'
 import { FeatureBarrage } from '@/components/Barrage'
-import { FeatureDefault } from '@/components/Default'
-import { mapGetters } from 'vuex'
+import { FeatureVideo } from '@/components/Video'
+import { FeatureIframe } from '@/components/Iframe'
 
 export default {
   data () {
@@ -29,12 +32,14 @@ export default {
   name: 'FeatureModule',
   props: ['brick', 'index'],
   components: {
-    FeatureTitle,
     FeatureDefault,
+    FeatureTitle,
     FeatureQrcode,
     FeatureClock,
     FeatureBarrage,
-    FeatureImage
+    FeatureImage,
+    FeatureVideo,
+    FeatureIframe
   },
   computed: {
     global () {
@@ -74,23 +79,16 @@ export default {
       }
     }
   }
-  .feature-edit {
-    position: absolute;
-    top: 0;
-    right: 0;
-    color: #333;
-    z-index: 1;
-    font-size: .125rem; /* 24px */
-    padding: 0 .02604167rem; /* 5px */
-    ol {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    li {
-      cursor: pointer;
-      padding: .05208333rem /* 10px */
-    }
+  .full-screen {
+    width: 100%;
+    height: 100%;
+  }
+  .full-screen-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
   }
 </style>

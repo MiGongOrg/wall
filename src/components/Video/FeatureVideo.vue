@@ -1,8 +1,8 @@
 <template>
-  <div class="feature-qrcode">
-    <fs ref="fullscreenQrcode" @change="fullscreenChange" :background="fsbackground" class="full-screen">
+  <div class="feature-video">
+    <fs ref="fullscreenVideo" @change="fullscreenChange" :background="fsbackground" class="full-screen">
       <div class="full-screen-content">
-        <img :src="qrcode.url" class="qrcode">
+        <video :src="video[video.activeName].url" :controls="video[video.activeName].controls" :autoplay="video[video.activeName].autoplay" :loop="video[video.activeName].loop"></video>
         <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
       </div>
     </fs>
@@ -15,13 +15,13 @@ import { FeatureSetting } from '@/components/Setting'
 
 export default {
 
-  name: 'FeatureQrcode',
+  name: 'FeatureVideo',
 
-  data () {
+  data() {
     return {
-      fullscreen: false,
+      settingName: 'SettingVideo',
       fsbackground: '#fff',
-      settingName: 'SettingQrcode',
+      fullscreen: false,
     }
   },
   components: {
@@ -29,26 +29,26 @@ export default {
   },
   props: ['parentId', 'index'],
   computed: {
-    ...mapGetters(['qrcode']),
-    qrcode () {
-      return this.$store.state.qrcode
+    ...mapGetters(['video']),
+    video () {
+      return this.$store.state.video
     }
   },
   methods: {
+    // 全屏
     toggleFullScreen () {
-      this.$refs['fullscreenQrcode'].toggle()
+      this.$refs['fullscreenVideo'].toggle()
     },
     fullscreenChange (fullscreen) {
       this.fullscreen = fullscreen
-    }
-  },
+    },
+  }
 }
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .feature-qrcode {
-    .qrcode {
-      display: block;
+  .feature-video {
+    video {
       width: 100%;
     }
   }

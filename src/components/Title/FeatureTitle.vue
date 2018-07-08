@@ -1,7 +1,11 @@
 <template>
-  <div class="feature-title" :style="{ backgroundColor: `rgba(${title.rgbaStr})`}">
-    <span class="title" :style="{ fontSize: `${title.fontSize}px` }">{{title.text}}</span>
-    <feature-setting :parentId="parentId" :settingName="settingName"></feature-setting>
+  <div class="feature-title">
+    <fs ref="fullscreenTitle" @change="fullscreenChange" :background="fsbackground" class="full-screen">
+      <div class="full-screen-content" :style="{ backgroundColor: `rgba(${title.rgbaStr})`}">
+        <span class="title" :style="{ fontSize: `${title.fontSize}px` }">{{title.text}}</span>
+        <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
+      </div>
+    </fs>
   </div>    
 </template>
 
@@ -16,6 +20,8 @@ export default {
   data () {
     return {
       settingName: 'SettingTitle',
+      fsbackground: '#fff',
+      fullscreen: false,
     }
   },
   components: {
@@ -23,7 +29,13 @@ export default {
   },
   props: ['parentId', 'index'],
   methods: {
-
+    // 全屏
+    toggleFullScreen () {
+      this.$refs['fullscreenTitle'].toggle()
+    },
+    fullscreenChange (fullscreen) {
+      this.fullscreen = fullscreen
+    },
   },
   computed: {
     ...mapGetters(['title']),

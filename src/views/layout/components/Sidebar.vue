@@ -18,7 +18,7 @@
             <p class="icon-image global-setting-icon"></p>
             <p>全局设置</p>
           </li>
-          <li class="fullscreen">
+          <li class="fullscreen" @click="fullscreen">
             <p class="icon-image fullscreen-lightning-icon"></p>
             <p>预览</p>
           </li>
@@ -31,6 +31,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import EventBus from '@/assets/EventBus.js'
 import { SidebarModule } from '@/components/Sidebar'
 
 export default {
@@ -67,6 +68,9 @@ export default {
     globalSetting () {
       let val = [{ component: 'global' }]
       this.$store.dispatch('SidebarModule', val)
+    },
+    fullscreen () {
+      EventBus.$emit('toggleFullScreen')
     }
   }
 }
