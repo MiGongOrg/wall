@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 import app from './modules/app'
 import qrcode from './modules/qrcode'
 import barrage from './modules/barrage'
@@ -26,7 +27,11 @@ const store = new Vuex.Store({
     video,
     iframe
   },
-  getters
+  getters,
+  // 本地持久化 Storage 存储
+  plugins: [createPersistedState({
+    key: 'dragwall'
+  })]
 })
 
 export default store

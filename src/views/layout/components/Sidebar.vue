@@ -79,6 +79,7 @@ export default {
 <style rel="stylesheet/scss" lang="scss">
   #sidebar {
     position: relative;
+    height: 100%;
     width: 305px;
     transition: width .28s;
     .sidebar-container {

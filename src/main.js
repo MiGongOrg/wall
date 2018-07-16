@@ -65,6 +65,12 @@ var wilddog = Wilddog.initializeApp({
 
 let ref = wilddog.sync().ref('chats')
 
+// 生产环境关闭调试信息
+const isDebug_mode = process.env.NODE_ENV !== 'production'
+Vue.config.debug = isDebug_mode
+Vue.config.devtools = isDebug_mode
+Vue.config.productionTip = isDebug_mode
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

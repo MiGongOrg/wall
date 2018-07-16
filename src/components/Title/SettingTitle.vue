@@ -4,7 +4,7 @@
     <ul>
       <li>
         <h3>标题</h3>
-        <el-input v-model="title.text" placeholder="输入标题"></el-input>
+        <el-input v-model="text" placeholder="输入标题"></el-input>
       </li>
       <li>
         <h3>背景颜色</h3>
@@ -12,7 +12,7 @@
       </li>
       <li>
         <h3>字体大小</h3>
-        <el-slider v-model="title.fontSize" :min="20" :max="60"></el-slider>
+        <el-slider v-model="fontSize" :min="20" :max="60"></el-slider>
       </li>
     </ul>
   </div>
@@ -36,6 +36,22 @@ export default {
   },
   computed: {
     ...mapGetters(['title']),
+    text: {
+      get () {
+        return this.$store.state.title.text
+      },
+      set (value) {
+        this.$store.dispatch('SettingTitleText', value)
+      }
+    },
+    fontSize: {
+      get () {
+        return this.$store.state.title.fontSize
+      },
+      set (value) {
+        this.$store.dispatch('SettingTitleFontSize', value)
+      }
+    },
     title () {
       console.log(this.$store.state.title)
       return this.$store.state.title
