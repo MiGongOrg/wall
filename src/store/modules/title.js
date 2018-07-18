@@ -1,14 +1,24 @@
 const title = {
   state: {
     text: 'Hello World!',
-    color: '#fff',
-    rgba: {
-      r: 33,
-      g: 123,
-      b: 55,
-      a: .5
+    textColor: {
+      rgba: {
+        r: 0,
+        g: 0,
+        b: 0,
+        a: 1
+      },
+      rgbaStr: '0,0,0,1'
     },
-    rgbaStr: '33,123,55,.5',
+    bgColor: {
+      rgba: {
+        r: 33,
+        g: 123,
+        b: 55,
+        a: .5
+      },
+      rgbaStr: '33,123,55,.5',
+    },
     fontSize: 24
   },
   mutations: {
@@ -19,8 +29,10 @@ const title = {
       state.fontSize = value
     },
     SET_TITLE_BG_COLOR (state, value) {
-      state.rgba = value.rgba
-      state.rgbaStr = value.rgbaStr
+      state.bgc = value
+    },
+    SET_TITLE_TEXT_COLOR (state, value) {
+      state.textColor = value
     },
   },
   actions: {
@@ -35,6 +47,10 @@ const title = {
     // 设置标题背景颜色
     SettingTitleBgColor ({commit}, value) {
       commit('SET_TITLE_BG_COLOR', value)
+    },
+    // 设置标题文本颜色
+    SettingTitleTextColor ({commit}, value) {
+      commit('SET_TITLE_TEXT_COLOR', value)
     },
   }
 }

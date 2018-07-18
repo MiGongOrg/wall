@@ -191,6 +191,7 @@ export default {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+        flex: 1;
       }
       .sub {
         display: block;

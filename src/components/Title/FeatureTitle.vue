@@ -1,8 +1,8 @@
 <template>
   <div class="feature-title">
     <fs ref="fullscreenTitle" @change="fullscreenChange" :background="fsbackground" class="full-screen">
-      <div class="full-screen-content" :style="{ backgroundColor: `rgba(${title.rgbaStr})`}">
-        <span class="title" :style="{ fontSize: `${title.fontSize}px` }">{{title.text}}</span>
+      <div class="full-screen-content" :style="{ backgroundColor: `rgba(${title.bgColor.rgbaStr})`}">
+        <span class="title" :style="{ fontSize: `${title.fontSize}px`, color: `rgba(${title.textColor.rgbaStr})` }">{{title.text}}</span>
         <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
       </div>
     </fs>

@@ -7,8 +7,21 @@
         <el-input v-model="text" placeholder="输入标题"></el-input>
       </li>
       <li>
-        <h3>背景颜色</h3>
-        <chrome-picker :value="title.rgba" @input="updateColor"></chrome-picker>
+        <h3>颜色</h3>
+        <div class="flex-space-between">
+          <p>
+            <span>背景颜色</span>
+            <span class="sub"></span>
+          </p>
+          <picker :color="bgColor"></picker>
+        </div>
+        <div class="flex-space-between">
+          <p>
+            <span>文字颜色</span>
+            <span class="sub"></span>
+          </p>
+          <picker :color="textColor"></picker>
+        </div>
       </li>
       <li>
         <h3>字体大小</h3>
@@ -21,6 +34,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { Chrome } from 'vue-color'
+import Picker from '../Picker'
 
 export default {
 
@@ -32,7 +46,8 @@ export default {
     }
   },
   components: {
-    ChromePicker: Chrome
+    ChromePicker: Chrome,
+    Picker: Picker
   },
   computed: {
     ...mapGetters(['title']),
@@ -52,24 +67,25 @@ export default {
         this.$store.dispatch('SettingTitleFontSize', value)
       }
     },
-    title () {
-      console.log(this.$store.state.title)
-      return this.$store.state.title
+    textColor () {
+      return this.$store.state.title.textColor
+    },
+    bgColor () {
+      return this.$store.state.title.bgColor
     }
   },
-  methods: {
-    /* 更新 bg color */
-    updateColor (value) {
-
-      let rgbaObj = value.rgba
-        , rgbaArr = Object.keys(rgbaObj).map(function(k){return rgbaObj[k]})
-        , rgbaStr = rgbaArr.toString()
-
-      let val = {}
-      val['rgba'] = value.rgba
-      val['rgbaStr'] = rgbaStr
-
-      this.$store.dispatch('SettingTitleBgColor', val)
+  watch: {
+    'textColor': {
+      handler: function (value) {
+        this.$store.dispatch('SettingTitleTextColor', value)
+      },
+      deep: true
+    },
+    'bgColor': {
+      handler: function (value) {
+        this.$store.dispatch('SettingTitleBgColor', value)
+      },
+      deep: true
     }
   }
 }
