@@ -2,7 +2,9 @@
   <div class="feature-qrcode">
     <fs ref="fullscreenQrcode" @change="fullscreenChange" :background="fsbackground" class="full-screen">
       <div class="full-screen-content">
-        <img :src="qrcode.url" class="qrcode">
+        <div class="qrcode-container">
+          <img :src="qrcode.url" class="qrcode">
+        </div>
         <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
       </div>
     </fs>
@@ -47,9 +49,15 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss">
   .feature-qrcode {
+    .qrcode-container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
     .qrcode {
       display: block;
       width: 100%;
+      object-fit: contain;
     }
   }
 </style>

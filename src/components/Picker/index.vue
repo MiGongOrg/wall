@@ -1,5 +1,5 @@
 <template>
-  <div class="Picker">
+  <div class="picker">
     <div class="color-picker" :style="{ backgroundColor: `rgba(${color.rgbaStr})` }" @click="showToggle"></div>
       <chrome-picker :value="color.rgba" @input="updateColor" v-if="isShow"></chrome-picker>
   </div>
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .Picker {
+  .picker {
     position: relative;
     .color-picker {
       width: 20px;
