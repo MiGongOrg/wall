@@ -235,8 +235,5 @@ export default {
     .margin-top {
       margin-top: 10px;
     }
-    li {
-      margin-bottom: 20px;
-    }
   }
 </style>

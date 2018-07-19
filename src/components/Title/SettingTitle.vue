@@ -1,13 +1,15 @@
 <template>
   <div class="setting-title">
     <h2>标题功能设置</h2>
+    <h3>标题</h3>
     <ul>
       <li>
-        <h3>标题</h3>
         <el-input v-model="text" placeholder="输入标题"></el-input>
       </li>
+    </ul>
+    <h3>颜色</h3>
+    <ul>
       <li>
-        <h3>颜色</h3>
         <div class="flex-space-between">
           <p>
             <span>背景颜色</span>
@@ -23,8 +25,10 @@
           <picker :color="textColor"></picker>
         </div>
       </li>
+    </ul>
+    <h3>字体大小</h3>
+    <ul>
       <li>
-        <h3>字体大小</h3>
         <el-slider v-model="fontSize" :min="20" :max="60"></el-slider>
       </li>
     </ul>

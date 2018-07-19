@@ -59,6 +59,9 @@ export default {
       width: 245px;
       background-color: #fff;
       padding: 10px;
+      ul {
+        margin-bottom: 10px;
+      }
     }
   }
 </style>

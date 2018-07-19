@@ -1,9 +1,9 @@
 <template>
   <div class="setting-qrcode">
     <h2>二维码功能设置</h2>
+    <h3>二维码地址</h3>
     <ul>
       <li>
-        <h3>二维码地址</h3>
         <el-input v-model="url" placeholder="http://">
           <template slot="append">
             <el-button type="primary" @click="addHistory">添加</el-button>
