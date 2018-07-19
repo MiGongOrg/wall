@@ -8,16 +8,17 @@
           class="upload-image"
           ref="upload"
           action=""
-          :limit="10"
+          :limit="limit"
           accept="image/*"
           :on-change="handleImageChange"
+          :before-remove="beforeRemove"
           :on-remove="handleImageRemove"
           :on-exceed="handleImageExceed"
           :on-preview="handleImagePreview"
-          :file-list="imageFileList"
+          :file-list="image.urls"
           :auto-upload="false">
           <el-button style="width: 100%" slot="trigger" type="primary">选取图片</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+          <div slot="tip" class="el-upload__tip">图片将本地持久化，因内存空间有限，限制最多添加5张，且单张图片不能超过2M</div>
         </el-upload>
       </li>
     </ul>
@@ -29,7 +30,7 @@
             <span>自动轮播</span>
             <span class="sub"></span>
           </p>
-          <el-switch v-model="image.autoplay"></el-switch>
+          <el-switch v-model="autoplay"></el-switch>
         </div>
       <li>
         <div class="flex-space-between">
@@ -37,18 +38,18 @@
             <span>自适应尺寸</span>
             <span class="sub"></span>
           </p>
-          <el-switch v-model="image.size"></el-switch>
+          <el-switch v-model="resize"></el-switch>
         </div>
       </li>
       <li>
         <div class="flex-space-between">
           <p>
             <span>轮播间隔</span>
-            <span class="sub"></span>
+            <span class="sub">拖动滑块修改间隔时间</span>
           </p>
-          <span>{{image.delay}} 毫秒</span>
+          <span>{{delay}} 毫秒</span>
         </div>
-        <el-slider v-model="image.delay" :min="1000" :max="10000" :step="1000" show-stops></el-slider>
+        <el-slider v-model="delay" :min="1000" :max="10000" :step="1000" show-stops></el-slider>
       </li>
     </ul>
   </div>
@@ -63,52 +64,93 @@ export default {
 
   data () {
     return {
-      imageFileList: []
+      limit: 5
     }
   },
   computed: {
     ...mapGetters(['image']),
     image () {
       return this.$store.state.image
+    },
+    autoplay: {
+      get () {
+        return this.$store.state.image.autoplay
+      },
+      set (value) {
+        this.$store.dispatch('SettingImageAutoplay', value)
+      }
+    },
+    resize: {
+      get () {
+        return this.$store.state.image.resize
+      },
+      set (value) {
+        this.$store.dispatch('SettingImageResize', value)
+      }
+    },
+    delay: {
+      get () {
+        return this.$store.state.image.delay
+      },
+      set (value) {
+        this.$store.dispatch('SettingImageDelay', value)
+      }
     }
   },
   methods: {
     handleImageChange (file, fileList) {
-      let fileListArr = []
+      const that = this
+      let xhr = new XMLHttpRequest()
+      let fileReader = new FileReader()
+      let url = file.url
+      let name = file.name
+      // 本地持久化图片 https://www.w3ctech.com/topic/767
+      xhr.open('GET', url, true)
+      xhr.responseType = 'blob'
 
-      fileList.forEach((item, index) => {
-        let obj = {}
-        obj.name = item.name
-        obj.url = item.url
-        fileListArr.push(obj)
+      xhr.addEventListener('load', function () {
+        if (xhr.status === 200) {
+          fileReader.onload = function (evt) {
+            let value = {}
+            let result = evt.target.result
+            value.url = result
+            value.name = name
+            that.$store.dispatch('SettingImageUrl', value)
+          }
+          fileReader.readAsDataURL(xhr.response)
+        }
+      }, false)
+
+      xhr.send()
+
+    },
+    beforeRemove (file) {
+      return this.$confirm(`确定移除 ${ file.name }`, '提示', {
+        type: 'warning'
       })
-
-      this.imageFileList = fileListArr
-
-      console.log(fileListArr)
-      this.$store.dispatch('ImageUrl', fileListArr)
     },
     handleImageRemove (file) {
-      console.log(file.name)
-      this.$store.dispatch('ImageUrl', '')
-    },
-    handleImageExceed (file) {
-      this.$notify.info({
-        title: '提示',
-        message: '超出数量限制！'
+      const that = this
+      let index = that.fileIndex(file.name)
+      this.$store.dispatch('SettingImageRemove', index)
+      this.$message({
+        type: 'success',
+        message: '删除成功!'
       })
+    },
+    handleImageExceed (files, fileList) {
+      this.$message.warning(`本地存储空间有限，最多添加 ${this.limit} 张图片！`)
     },
     handleImagePreview (file) {
       // 点击图片，切换该图片为背景
-
-      let index = _.findIndex(this.imageFileList, function (o) {
-        return o.name === file.name
-      })
-
-      console.log('index:', index)
-
-      this.$store.dispatch('ImageIndex', index)
+      let index = this.fileIndex(file.name)
+      this.$store.dispatch('SettingImageIndex', index)
     },
+    fileIndex (name) {
+      return _.findIndex(this.image.urls, function (item) {
+        return item.name === name
+      })
+    }
   }
 
 }

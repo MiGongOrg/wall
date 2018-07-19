@@ -2,7 +2,7 @@
   <div class="feature-image">
     <fs ref="fullscreenImage" @change="fullscreenChange" :background="fsbackground" class="full-screen">
       <div class="full-screen-content">
-        <swiper :options="swiperOption" ref="image" :class="{autoSize:image.size}">
+        <swiper :options="swiperOption" ref="image" :class="{autoSize:image.resize}">
           <swiper-slide v-for="item in image.urls" :key="item.name" :data-swiper-autoplay="image.delay">
             <img :src="item.url" :name="item.name">
           </swiper-slide>
@@ -83,7 +83,6 @@ export default {
     },
     'image.index': {
       handler: function (index) {
-        console.log('index:', index)
         // 切换到指定背景图片
         this.swiper.slideTo(index)
       },
