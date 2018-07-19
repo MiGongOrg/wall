@@ -7,10 +7,10 @@ const qrcode = {
     SET_QRCODE_URL (state, value) {
       state.url = value
     },
-    SET_HISTORY_URL (state, index) {
+    SET_QRCODE_HISTORY_URL (state, index) {
       state.history.splice(index, 1)
     },
-    SET_HISTORY_ADD_URL (state, value) {
+    SET_QRCODE_HISTORY_ADD_URL (state, value) {
       state.history.push(value)
     }
   },
@@ -18,11 +18,11 @@ const qrcode = {
     SettingQrcodeUrl ({commit}, value) {
       commit('SET_QRCODE_URL', value)
     },
-    SettingHistoryUrl ({commit}, index) {
-      commit('SET_HISTORY_URL', index)
+    SettingQrcodeHistoryUrl ({commit}, index) {
+      commit('SET_QRCODE_HISTORY_URL', index)
     },
-    SettingHistoryAddUrl ({commit}, value) {
-      commit('SET_HISTORY_ADD_URL', value)
+    SettingQrcodeHistoryAddUrl ({commit}, value) {
+      commit('SET_QRCODE_HISTORY_ADD_URL', value)
     }
   }
 }

@@ -48,7 +48,18 @@ export default {
   },
   methods: {
     handleRemove (index) {
-      this.$store.dispatch('SettingHistoryUrl', index)
+      const that = this
+      this.$confirm(`确定移除 ${ this.history[index].url }`, '提示', {
+        type: 'warning'
+      }).then(() => {
+        that.$store.dispatch('SettingQrcodeHistoryUrl', index)
+        that.$message({
+          type: 'success',
+          message: '删除成功!'
+        })
+      }).catch(() => {
+        console.log('取消')
+      })
     },
     handlePreview (index) {
       this.url = this.history[index].url
@@ -57,7 +68,7 @@ export default {
       let value = {
         url: this.url
       }
-      this.$store.dispatch('SettingHistoryAddUrl', value)
+      this.$store.dispatch('SettingQrcodeHistoryAddUrl', value)
     }
   }
 }
