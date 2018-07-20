@@ -9,7 +9,7 @@
             <span>循环播放</span>
             <span class="sub">(重复循环播放弹幕内容)</span>
           </p>
-          <el-switch v-model="barrage.loop"></el-switch>
+          <el-switch v-model="loop"></el-switch>
         </div>
       </li>
     </ul>
@@ -30,8 +30,13 @@ export default {
   },
   computed: {
     ...mapGetters(['barrage']),
-    barrage () {
-      return this.$store.state.barrage
+    loop: {
+      get () {
+        return this.$store.state.barrage.loop
+      },
+      set (value) {
+        this.$store.dispatch('SettingBarrageLoop', value)
+      }
     }
   },
 }
