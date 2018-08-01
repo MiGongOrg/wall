@@ -7,7 +7,7 @@
       :index="index"
     >
     </div>
-    <ul class="feature-drag-item" :id="brick.feature[0].id" v-show="brick.feature[0].component === 'FeatureDefault' " :style="{ backgroundColor: `rgba(${global.backgroundColor.rgbaStr})`}"></ul>
+    <ul class="feature-drag-item" :id="brick.feature[0].id" v-show="brick.feature[0].component === 'FeatureDefault' " :style="{ backgroundColor: `rgba(${global.bgColor.rgbaStr})`}"></ul>
   </div>
 </template>
 
@@ -43,7 +43,7 @@ export default {
   },
   computed: {
     global () {
-      return this.$store.state.app.setting.global
+      return this.$store.state.global
     }
   },
   methods: {
@@ -66,6 +66,7 @@ export default {
     }
   }
   .feature-module-item {
+    box-sizing: border-box;
     position: relative;
     display: flex;
     justify-content: center;
@@ -74,6 +75,7 @@ export default {
     width: 100%;
     height: 100%;
     &:hover {
+      border: 1px dashed #ddd;
       .feature-setting {
         top: 0;
       }

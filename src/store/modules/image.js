@@ -32,18 +32,23 @@ const image = {
     SettingImageUrl ({commit}, value) {
       commit('SET_IMAGE_URL', value)
     },
+    // 选择当前图片
     SettingImageIndex ({commit}, index) {
       commit('SET_IMAGE_INDEX', index)
     },
+    // 图片自动轮播
     SettingImageAutoplay ({commit}, value) {
       commit('SET_IMAGE_AUTOPLAY', value)
     },
+    // 图片轮播间隔时长
     SettingImageDelay ({commit}, value) {
       commit('SET_IMAGE_DELAY', value)
     },
+    // 图片尺寸自适应
     SettingImageResize ({commit}, value) {
       commit('SET_IMAGE_RESIZE', value)
     },
+    // 删除图片
     SettingImageRemove ({commit}, value) {
       commit('SET_IMAGE_REMOVE', value)
     },

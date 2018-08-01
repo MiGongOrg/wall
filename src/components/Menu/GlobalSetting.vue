@@ -4,33 +4,34 @@
     <h3>背景类型</h3>
     <ul>
       <li>
-        <el-tabs v-model="background.activeName">
+        <el-tabs v-model="global.activeName" @tab-click="tabClick">
           <el-tab-pane label="背景图片" name="backgroundImage">
             <el-upload
               class="upload-image"
               ref="upload"
               action=""
-              :limit="10"
+              :limit="limit"
               accept="image/*"
               :on-change="handleImageChange"
+              :before-remove="beforeRemove"
               :on-remove="handleImageRemove"
               :on-exceed="handleImageExceed"
               :on-preview="handleImagePreview"
-              :file-list="imageFileList"
+              :file-list="global.bgImage.files"
               :auto-upload="false">
               <el-button style="width: 100%" slot="trigger" type="primary">选取图片</el-button>
-              <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+              <div slot="tip" class="el-upload__tip">图片将本地持久化，因内存空间有限，限制最多添加5张，且单张图片不能超过2M</div>
             </el-upload>
             <div class="flex-space-between margin-top">
               <span>自动轮播</span>
-              <el-switch v-model="background.backgroundImage.autoplay"></el-switch>
+              <el-switch v-model="autoplay"></el-switch>
             </div>
             <div class="margin-top">
               <p class="flex-space-between">
                 <span>轮播间隔</span>
-                <span>{{background.backgroundImage.delay}} 毫秒</span>
+                <span>{{delay}} 毫秒</span>
               </p>
-              <el-slider v-model="background.backgroundImage.delay" :min="1000" :max="10000" :step="1000" show-stops></el-slider>
+              <el-slider v-model="delay" :min="1000" :max="10000" :step="1000" show-stops></el-slider>
             </div>
           </el-tab-pane>
           <el-tab-pane label="背景视频" name="backgroundVideo">
@@ -43,16 +44,20 @@
               :on-change="handleVideoChange"
               :on-remove="handleVideoRemove"
               :on-exceed="handleVideoExceed"
-              :file-list="videoFileList"
+              :file-list="global.bgVideo.files"
               :auto-upload="false">
               <el-button style="width: 100%" slot="trigger" type="primary">选取视频</el-button>
-              <div slot="tip" class="el-upload__tip">只能上传 .mp4 文件</div>
+              <div slot="tip" class="el-upload__tip">视频文件暂不支持本地持久化存储，如意外关闭或刷新网页，请删除视频重新添加</div>
             </el-upload>
           </el-tab-pane>
-          <el-tab-pane label="背景动画" name="backgroundSnow">
-            <el-select v-model="value" placeholder="请选择">
+          <el-tab-pane label="背景动画" name="backgroundAnim">
+            <el-select
+              v-model="global.bgAnim.activeName"
+              placeholder="请选择"
+              @change="handleAnimChange"
+            >
               <el-option
-                v-for="item in options"
+                v-for="item in global.bgAnim.options"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
@@ -69,24 +74,27 @@
         <div class="flex-space-between">
           <p>
             <span>可拖拽布局</span>
-            <span class="sub">(拖拽容器调整布局位置)</span>
+            <span class="sub">拖拽容器调整布局位置</span>
           </p>
-          <el-switch v-model="global.draggable"></el-switch>
+          <el-switch v-model="draggable"></el-switch>
         </div>
       </li>
       <li>
         <div class="flex-space-between">
           <p>
             <span>可缩放尺寸</span>
-            <span class="sub">(拉伸容器右下角缩放容器大小)</span>
+            <span class="sub">拉伸容器右下角缩放容器大小</span>
           </p>
-          <el-switch v-model="global.resizable"></el-switch>
+          <el-switch v-model="resizable"></el-switch>
         </div>
       </li>
       <li>
-        <p class="title-item">容器背景色</p>
-        <div>
-          <chrome-picker :value="global.backgroundColor.rgba" @input="updateColor"></chrome-picker>
+        <div class="flex-space-between">
+          <p>
+            <span>容器背景色</span>
+            <span class="sub">点击右侧色块修改</span>
+          </p>
+          <picker :color="global.bgColor"></picker>
         </div>
       </li>
     </ul>
@@ -96,7 +104,7 @@
 <script>
 import { array } from 'lodash'
 import { mapGetters } from 'vuex'
-import { Chrome } from 'vue-color'
+import Picker from '../Picker'
 
 export default {
 
@@ -104,91 +112,134 @@ export default {
 
   data () {
     return {
-      value: '',
-      options: [{
-        value: 'show',
-        label: '3D 雪花'
-      }],
-      activeName: 'backgroundImage',
-      imageFileList: [],
-      videoFileList: []
+      limit: 5
     }
   },
   components: {
-    ChromePicker: Chrome
+    Picker: Picker
   },
   computed: {
     ...mapGetters(['global']),
     global () {
-      return this.$store.state.app.setting.global
+      return this.$store.state.global
     },
-    background () {
-      return this.$store.state.background
+    autoplay: {
+      get () {
+        return this.$store.state.global.bgImage.autoplay
+      },
+      set (value) {
+        this.$store.dispatch('SettingGlobalBgImageAutoplay', value)
+      }
+    },
+    delay: {
+      get () {
+        return this.$store.state.global.bgImage.delay
+      },
+      set (value) {
+        this.$store.dispatch('SettingGlobalBGImageDelay', value)
+      }
+    },
+    draggable: {
+      get () {
+        return this.$store.state.global.draggable
+      },
+      set (value) {
+        this.$store.dispatch('SettingGlobalDraggable', value)
+      }
+    },
+    resizable: {
+      get () {
+        return this.$store.state.global.resizable
+      },
+      set (value) {
+        this.$store.dispatch('SettingGlobalResizable', value)
+      }
+    },
+  },
+  watch: {
+    'global.bgColor': {
+      handler: function (value) {
+        this.$store.dispatch('SettingGlobalBgColor', value)
+      },
+      deep: true
     }
   },
   methods: {
+    tabClick (event) {
+      let paneName = event.paneName
+      console.log('切换Tab:', paneName)
+    },
     handleImageChange (file, fileList) {
-      let fileListArr = []
 
-      fileList.forEach((item, index) => {
-        let obj = {}
-        obj.name = item.name
-        obj.url = item.url
-        fileListArr.push(obj)
+      const that = this
+      let xhr = new XMLHttpRequest()
+      let fileReader = new FileReader()
+      let url = file.url
+      let name = file.name
+      // 本地持久化图片 https://www.w3ctech.com/topic/767
+      xhr.open('GET', url, true)
+      xhr.responseType = 'blob'
+
+      xhr.addEventListener('load', function () {
+        if (xhr.status === 200) {
+          fileReader.onload = function (evt) {
+            let value = {}
+            let result = evt.target.result
+            value.url = result
+            value.name = name
+            that.$store.dispatch('SettingGlobalBgImage', value)
+          }
+          fileReader.readAsDataURL(xhr.response)
+        }
+      }, false)
+
+      xhr.send()
+    },
+    beforeRemove (file) {
+      return this.$confirm(`确定移除 ${ file.name }`, '提示', {
+        type: 'warning'
       })
-
-      this.imageFileList = fileListArr
-
-      this.$store.dispatch('ImageBgUrl', fileListArr)
     },
     handleImageRemove (file) {
-      console.log(file.name)
-      this.$store.dispatch('ImageBgUrl', '')
+      const that = this
+      let index = that.fileIndex(file.name)
+      this.$store.dispatch('SettingGlobalBgImageRemove', index)
+      this.$message({
+        type: 'success',
+        message: '删除成功!'
+      })
     },
     handleImageExceed (file) {
-      this.$notify.info({
-        title: '提示',
-        message: '超出数量限制！'
-      })
+      this.$message.warning(`本地存储空间有限，最多添加 ${this.limit} 张图片！`)
     },
     handleImagePreview (file) {
       // 点击图片，切换该图片为背景
-
-      let index = _.findIndex(this.imageFileList, function (o) {
-        return o.name === file.name
+      let index = this.fileIndex(file.name)
+      this.$store.dispatch('SettingGlobalBgImageIndex', index)
+    },
+    fileIndex (name) {
+      return _.findIndex(this.global.bgImage.files, function (item) {
+        return item.name === name
       })
-
-      this.$store.dispatch('ImageBgIndex', index)
-      // imageFileList
     },
     handleVideoChange (file) {
-      this.$store.dispatch('VideoBgUrl', file.url)
+      let value = {
+        url: file.url,
+        name: file.name
+      }
+      this.$store.dispatch('SettingGlobalBgVideo', value)
     },
     handleVideoRemove (file) {
-      this.$store.dispatch('VideoBgUrl', '')
+      this.$store.dispatch('SettingGlobalBgVideoRemove', 0)
     },
     handleVideoExceed (file) {
-      this.$notify.info({
-        title: '提示',
-        message: '超出数量限制！'
-      })
-      _this.$store.dispatch('DragId', el.id)
+      this.$message.warning('只允许添加一个背景视频')
     },
     handleMarginChange (value) {
       console.log(value)
     },
-    /* 更新容器背景颜色 */
-    updateColor (value) {
-
-      let rgbaObj = value.rgba
-        , rgbaArr = Object.keys(rgbaObj).map(function(k){return rgbaObj[k]})
-        , rgbaStr = rgbaArr.toString()
-
-      let val = {}
-      val['rgba'] = value.rgba
-      val['rgbaStr'] = rgbaStr
-
-      this.$store.dispatch('SettingContainerBgColor', val)
+    handleAnimChange (value) {
+      this.$store.dispatch('SettingGlobalBgAnim', value)
     }
   }
 }
@@ -203,6 +254,9 @@ export default {
     padding: 10px;
     .el-upload {
       display: block;
+    }
+    .el-select {
+      width: 100%;
     }
     .title-item {
       width: 100%;

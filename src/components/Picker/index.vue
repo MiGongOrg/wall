@@ -51,9 +51,11 @@ export default {
   .picker {
     position: relative;
     .color-picker {
-      width: 20px;
-      height: 20px;
+      box-sizing: border-box;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
+      border: 2px solid #47DEBA;
       cursor: pointer;
     }
     // 修改选取颜色插件样式

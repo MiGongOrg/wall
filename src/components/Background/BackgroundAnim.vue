@@ -1,6 +1,6 @@
 <template>
-  <div class="background-module">
-    <div class="background-module-item"
+  <div class="background-anim">
+    <div class=""
       v-for="item in arr"
       :is="item.component"
     ></div>
@@ -9,25 +9,21 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import BackgroundImage from './BackgroundImage'
-import BackgroundVideo from './BackgroundVideo'
-import BackgroundAnim from './BackgroundAnim'
+import AnimSnow from './Animation/AnimSnow'
 
 export default {
 
-  name: 'Background',
+  name: 'BackgroundAnim',
 
   data () {
     return {
       arr: [{
-        component: null
+        component: 'AnimSnow'
       }]
     }
   },
   components: {
-    BackgroundImage,
-    BackgroundVideo,
-    BackgroundAnim
+    AnimSnow,
   },
   computed: {
     ...mapGetters(['global']),
@@ -36,23 +32,19 @@ export default {
     }
   },
   watch: {
-    'global.activeName': {
+    'global.bgAnim.activeName': {
       handler: function (val) {
+        console.log('handler:', val)
         this.arr[0].component = val
       },
       deep: true
     }
-  },
-  beforeMount () {
-    this.arr[0].component = this.global.bgAnim.activeName
-  },
+  }
 }
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .background-module {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+  .background-anim {
+
   }
 </style>

@@ -29,7 +29,7 @@ const title = {
       state.fontSize = value
     },
     SET_TITLE_BG_COLOR (state, value) {
-      state.bgc = value
+      state.bgColor = value
     },
     SET_TITLE_TEXT_COLOR (state, value) {
       state.textColor = value

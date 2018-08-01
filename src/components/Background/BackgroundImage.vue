@@ -1,7 +1,7 @@
 <template>
   <div class="background-image">
     <swiper :options="swiperOption" ref="backgroundImage">
-      <swiper-slide v-for="item in background.backgroundImage.urls" :key="item.name" :data-swiper-autoplay="background.backgroundImage.delay">
+      <swiper-slide v-for="item in bgImage.files" :key="item.name" :data-swiper-autoplay="bgImage.delay">
         <img :src="item.url" :name="item.name">
       </swiper-slide>
     </swiper>
@@ -12,7 +12,6 @@
 import { mapGetters } from 'vuex'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-
 
 export default {
   name: 'BackgroundImage',
@@ -33,16 +32,16 @@ export default {
     swiperSlide
   },
   computed: {
-    ...mapGetters(['background']),
-    background () {
-      return this.$store.state.background
+    ...mapGetters(['global']),
+    bgImage () {
+      return this.$store.state.global.bgImage
     },
     swiper () {
       return this.$refs.backgroundImage.swiper
     }
   },
   watch: {
-    'background.backgroundImage.autoplay': {
+    'bgImage.autoplay': {
       handler: function (val) {
         this.swiperOption.autoplay = val
         if (val) {
@@ -53,7 +52,7 @@ export default {
       },
       deep: true
     },
-    'background.backgroundImage.urls': {
+    'bgImage.files': {
       handler: function (val) {
         const that = this
         // 延迟更新
@@ -63,16 +62,13 @@ export default {
       },
       deep: true
     },
-    'background.backgroundImage.index': {
+    'bgImage.index': {
       handler: function (index) {
         // 切换到指定背景图片
         this.swiper.slideTo(index)
       },
       deep: true
     }
-  },
-  mounted () {
-
   }
 }
 </script>

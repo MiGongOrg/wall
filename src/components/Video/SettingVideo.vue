@@ -4,29 +4,30 @@
     <h3>视频类型</h3>
     <ul>
       <li>
-        <el-tabs v-model="video.activeName" @tab-click="tabClick">
+        <el-tabs v-model="activeName">
           <el-tab-pane label="本地视频" name="local">
             <el-upload
               class="upload-image"
               ref="upload"
               action=""
-              :limit="1"
+              :limit="limit"
               accept="video/*"
               :on-change="handleVideoChange"
+              :before-remove="beforeRemove"
               :on-remove="handleVideoRemove"
               :on-exceed="handleVideoExceed"
               :file-list="videoFileList"
               :auto-upload="false">
               <el-button style="width: 100%" slot="trigger" type="primary">选取视频</el-button>
             </el-upload>
-            <controls-video :video.sync="video.local"></controls-video>
+            <controls-video :video.sync="videoLocal"></controls-video>
           </el-tab-pane>
           <el-tab-pane label="链接地址" name="link">
-            <el-input v-model="video.link.url" placeholder="http://"></el-input>
-            <controls-video :video.sync="video.link"></controls-video>
+            <el-input v-model="linkUrl" placeholder="http://"></el-input>
+            <controls-video :video.sync="videoLink"></controls-video>
           </el-tab-pane>
           <el-tab-pane label="抓取视频" name="capture">
-            <el-input v-model="video.web" placeholder="http://"></el-input>
+            <el-input v-model="videoCapture.url" placeholder="http://"></el-input>
           </el-tab-pane>
         </el-tabs>
       </li>
@@ -43,6 +44,7 @@ export default {
 
   data() {
     return {
+      limit: 1,
       videoFileList: []
     }
   },
@@ -51,26 +53,64 @@ export default {
   },
   computed: {
     ...mapGetters(['video']),
-    video () {
-      return this.$store.state.video
+    activeName: {
+      get () {
+        return this.$store.state.video.activeName
+      },
+      set (value) {
+        this.$store.dispatch('SettingVideoActiveTab', value)
+      }
+    },
+    linkUrl: {
+      get () {
+        return this.$store.state.video.link.url
+      },
+      set (value) {
+        this.$store.dispatch('SettingVideoLinkUrl', value)
+      }
+    },
+    videoLink () {
+      return this.$store.state.video.link
+    },
+    videoLocal () {
+      return this.$store.state.video.local
+    },
+    videoCapture () {
+      return this.$store.state.video.capture
+    }
+  },
+  watch: {
+    'videoLink': {
+      handler: function (value) {
+        this.$store.dispatch('SettingVideoLink', value)
+      },
+      deep: true
+    },
+    'videoLocal': {
+      handler: function (value) {
+        this.$store.dispatch('SettingVideoLocal', value)
+      },
+      deep: true
     }
   },
   methods: {
-    tabClick (event) {
-      let paneName = event.paneName
-      this.$store.dispatch('ActiveTab', paneName)
-    },
     handleVideoChange (file) {
-      this.$store.dispatch('VideoUrl', file.url)
+      this.$store.dispatch('SettingVideoLocalUrl', file.url)
+    },
+    beforeRemove (file) {
+      return this.$confirm(`确定移除 ${ file.name }`, '提示', {
+        type: 'warning'
+      })
     },
     handleVideoRemove (file) {
-      this.$store.dispatch('VideoUrl', '')
+      this.$store.dispatch('SettingVideoLocalUrl', '')
+      this.$message({
+        type: 'success',
+        message: '删除成功!'
+      })
     },
     handleVideoExceed (file) {
-      this.$notify.info({
-        title: '提示',
-        message: '超出数量限制！'
-      })
+      this.$message.warning(`最多添加 ${this.limit} 个视频！`)
     },
   }
 }

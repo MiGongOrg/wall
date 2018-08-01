@@ -1,6 +1,9 @@
 <template>
   <div class="background-video">
-    <video loop autoplay :src="background.backgroundVideo.url"></video>
+    <video loop autoplay
+      v-for="item in bgVideo.files"
+      :src="item.url"
+    ></video>
   </div>
 </template>
 
@@ -17,9 +20,9 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['background']),
-    background () {
-      return this.$store.state.background
+    ...mapGetters(['global']),
+    bgVideo () {
+      return this.$store.state.global.bgVideo
     }
   }
 }

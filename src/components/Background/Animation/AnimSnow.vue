@@ -1,14 +1,15 @@
 <template>
-  <div class="background-snow" ref="snow">
-  </div>
+  <div class="anim-snow" ref="snow"></div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import * as THREE from 'three'
-import snow from './images/snow.png'
+import snow from './../images/snow.png'
+
 export default {
 
-  name: 'BackgroundSnow',
+  name: 'AnimSnow',
 
   data () {
     return {
@@ -59,7 +60,7 @@ export default {
       this.renderer.setSize( window.innerWidth, window.innerHeight )
       this.$refs.snow.appendChild(this.renderer.domElement)
 
-      // this.render()
+      this.render()
 
     },
     render () {
@@ -99,27 +100,24 @@ export default {
       return ((Math.random() * (max - min)) + min)
     }
   },
-  created () {
-
-  },
   mounted () {
     this.halfX = window.innerWidth / 2
     this.halfY = window.innerHeight / 2
     this.init()
-
-    // const that = this
-    // // 关闭动画
-    // setTimeout(function () {
-    //   console.log('停止')
-    //   cancelAnimationFrame(that.req)
-
-    // }, 5000)
+  },
+  // 组件销毁前执行
+  beforeDestroy () {
+    cancelAnimationFrame(this.req)
   }
 }
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .background-snow {
-
+  .anim-snow {
+    z-index: 4;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 </style>

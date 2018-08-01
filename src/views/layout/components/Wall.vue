@@ -65,7 +65,7 @@ export default {
       return this.$store.state.app.layout
     },
     global () {
-      return this.$store.state.app.setting.global
+      return this.$store.state.global
     }
   },
   created () {

@@ -82,6 +82,7 @@ export default {
     height: 100%;
     width: 305px;
     transition: width .28s;
+    z-index: 2;
     .sidebar-container {
       display: flex;
       width: 305px;

@@ -13,14 +13,16 @@
         <div class="flex-space-between">
           <p>
             <span>背景颜色</span>
-            <span class="sub"></span>
+            <span class="sub">点击右侧色块修改</span>
           </p>
           <picker :color="bgColor"></picker>
         </div>
+      </li>
+      <li>
         <div class="flex-space-between">
           <p>
             <span>文字颜色</span>
-            <span class="sub"></span>
+            <span class="sub">点击右侧色块修改</span>
           </p>
           <picker :color="textColor"></picker>
         </div>
@@ -37,7 +39,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { Chrome } from 'vue-color'
 import Picker from '../Picker'
 
 export default {
@@ -50,7 +51,6 @@ export default {
     }
   },
   components: {
-    ChromePicker: Chrome,
     Picker: Picker
   },
   computed: {

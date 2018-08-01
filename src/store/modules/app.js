@@ -36,29 +36,6 @@ const app = {
     },
     setting: {
       nav: [],
-      global: {
-        draggable: true,
-        resizable: true,
-        margin: [5, 10],
-        backgroundImage: {
-          autoplay: false,
-          delay: 3000,
-          urls: [],
-          index: null
-        },
-        backgroundVideo: {
-          url: null
-        },
-        backgroundColor: {
-          rgbaStr: '0,0,0,.01',
-          rgba: {
-            r: 0,
-            g: 0,
-            b: 0,
-            a: .01
-          }
-        }
-      },
       feature: {
         FeatureTitle: {
           text: 'Hello Wall',
@@ -121,10 +98,6 @@ const app = {
       }
 
     },
-    
-    // SET_IMAGE_BG_DELAY (state, value) {
-    //   state.setting.global.backgroundImage.delay = value
-    // },
     // 当前被拖拽的功能模块ID
     SET_DRAG_ID (state, id) {
       state.draging.dragId = id
@@ -163,11 +136,6 @@ const app = {
     SET_SETTING_NAV (state, value) {
       state.setting.nav = value
     },
-    
-    SET_CONTAINER_BG_COLOR (state, value) {
-      state.setting.global.backgroundColor.rgba = value.rgba
-      state.setting.global.backgroundColor.rgbaStr = value.rgbaStr
-    }
   },
   actions: {
     // 显示与隐藏侧边栏
@@ -182,9 +150,6 @@ const app = {
     SidebarModule ({commit}, value) {
       commit('SET_SIDEBAR_MODULE', value)
     },
-    // ImageBgDelay ({commit}, value) {
-    //   commit('SET_IMAGE_BG_DELAY', value)
-    // },
     // 当前拖拽的功能模块ID
     DragId ({commit}, id) {
       commit('SET_DRAG_ID', id)
@@ -203,11 +168,7 @@ const app = {
     },
     SettingNav ({commit}, value) {
       commit('SET_SETTING_NAV', value)
-    },
-    // 设置容器背景颜色
-    SettingContainerBgColor ({commit}, value) {
-      commit('SET_CONTAINER_BG_COLOR', value)
-    }
+    }, 
   }
 }
 

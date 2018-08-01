@@ -18,23 +18,42 @@ const video = {
     }
   },
   mutations: {
-    // 设置视频URL
-    SET_VIDEO_URL (state, value) {
+    SET_VIDEO_LINK (state, value) {
+      state.link = value
+    },
+    SET_VIDEO_LINK_URL (state, value) {
+      state.link.url = value
+    },
+    SET_VIDEO_LOCAL (state, value) {
+      state.local = value
+    },
+    // 设置本地视频URL
+    SET_VIDEO_LOCAL_URL (state, value) {
       state.local.url = value
     },
     // 当前被选中的Tab
-    SET_ACTIVE_TAB (state, value) {
+    SET_VIDEO_ACTIVE_TAB (state, value) {
       state.activeName = value
     }
   },
   actions: {
-    // 视频地址
-    VideoUrl ({commit}, value) {
-      commit('SET_VIDEO_URL', value)
+    SettingVideoLink ({commit}, value) {
+      commit('SET_VIDEO_LINK', value)
+    },
+    // 视频外链地址
+    SettingVideoLinkUrl ({commit}, value) {
+      commit('SET_VIDEO_LINK_URL', value)
+    },
+    SettingVideoLocal ({commit}, value) {
+      commit('SET_VIDEO_LOCAL', value)
+    },
+    // 本地视频地址
+    SettingVideoLocalUrl ({commit}, value) {
+      commit('SET_VIDEO_LOCAL_URL', value)
     },
     // 当前被选中的Tab
-    ActiveTab ({commit}, value) {
-      commit('SET_ACTIVE_TAB', value)
+    SettingVideoActiveTab ({commit}, value) {
+      commit('SET_VIDEO_ACTIVE_TAB', value)
     }
   }
 }
