@@ -1,5 +1,5 @@
 <template>
-  <div class="wall">
+  <div class="wall" :style="{ overflow: global.overflow ? 'auto' : 'hidden' }">
     <fs ref="fullscreenWall" @change="fullscreenChange" :background="fsbackground" class="full-screen">
       <grid-layout
         :layout="layout.init"

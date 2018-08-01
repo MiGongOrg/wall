@@ -73,7 +73,7 @@
       <li>
         <div class="flex-space-between">
           <p>
-            <span>可拖拽布局</span>
+            <span>拖拽布局</span>
             <span class="sub">拖拽容器调整布局位置</span>
           </p>
           <el-switch v-model="draggable"></el-switch>
@@ -82,7 +82,7 @@
       <li>
         <div class="flex-space-between">
           <p>
-            <span>可缩放尺寸</span>
+            <span>缩放尺寸</span>
             <span class="sub">拉伸容器右下角缩放容器大小</span>
           </p>
           <el-switch v-model="resizable"></el-switch>
@@ -91,8 +91,17 @@
       <li>
         <div class="flex-space-between">
           <p>
-            <span>容器背景色</span>
-            <span class="sub">点击右侧色块修改</span>
+            <span>布局溢出</span>
+            <span class="sub">是否允许容器布局溢出</span>
+          </p>
+          <el-switch v-model="overflow"></el-switch>
+        </div>
+      </li>
+      <li>
+        <div class="flex-space-between">
+          <p>
+            <span>背景色</span>
+            <span class="sub">点击右侧色块修改容器背景色</span>
           </p>
           <picker :color="global.bgColor"></picker>
         </div>
@@ -155,6 +164,14 @@ export default {
         this.$store.dispatch('SettingGlobalResizable', value)
       }
     },
+    overflow: {
+      get () {
+        return this.$store.state.global.overflow
+      },
+      set (value) {
+        this.$store.dispatch('SettingGlobalOverflow', value)
+      }
+    }
   },
   watch: {
     'global.bgColor': {
@@ -166,8 +183,8 @@ export default {
   },
   methods: {
     tabClick (event) {
-      let paneName = event.paneName
-      console.log('切换Tab:', paneName)
+      let value = event.paneName
+      this.$store.dispatch('SettingGlobalActive', value)
     },
     handleImageChange (file, fileList) {
 

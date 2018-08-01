@@ -3,6 +3,7 @@ const global = {
     activeName: 'backgroundImage',
     draggable: true,
     resizable: true,
+    overflow: false,
     margin: [5, 10],
     bgImage: {
       autoplay: false,
@@ -31,6 +32,9 @@ const global = {
     }
   },
   mutations: {
+    SET_GLOBAL_ACTIVE (state, value) {
+      state.activeName = value
+    },
     SET_GLOBAL_BG_COLOR (state, value) {
       state.bgColor = value
     },
@@ -55,6 +59,9 @@ const global = {
     SET_GLOBAL_RESIZABLE (state, value) {
       state.resizable = value
     },
+    SET_GLOBAL_OVERFLOW (state, value) {
+      state.overflow = value
+    },
     SET_GLOBAL_BG_VIDEO (state, value) {
       state.bgVideo.files.push(value)
     },
@@ -66,6 +73,9 @@ const global = {
     }
   },
   actions: {
+    SettingGlobalActive ({commit}, value) {
+      commit('SET_GLOBAL_ACTIVE', value)
+    },
     // 设置全局容器背景颜色
     SettingGlobalBgColor ({commit}, value) {
       commit('SET_GLOBAL_BG_COLOR', value)
@@ -97,6 +107,10 @@ const global = {
     // 设置全局容器是否可缩放尺寸
     SettingGlobalResizable ({commit}, value) {
       commit('SET_GLOBAL_RESIZABLE', value)
+    },
+    // 设置容器是否可溢出布局
+    SettingGlobalOverflow ({commit}, value) {
+      commit('SET_GLOBAL_OVERFLOW', value)
     },
     // 设置背景视频
     SettingGlobalBgVideo ({commit}, value) {

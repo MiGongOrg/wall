@@ -44,7 +44,7 @@ export default {
     }
   },
   beforeMount () {
-    this.arr[0].component = this.global.bgAnim.activeName
+    this.arr[0].component = this.global.activeName
   },
 }
 </script>
