@@ -3,7 +3,7 @@
     <fs ref="fullscreenImage" @change="fullscreenChange" :background="fsbackground" class="full-screen">
       <div class="full-screen-content">
         <swiper :options="swiperOption" ref="image" :class="{autoSize:image.resize}">
-          <swiper-slide v-for="item in image.urls" :key="item.name" :data-swiper-autoplay="image.delay">
+          <swiper-slide v-for="item in image.files" :key="item.name" :data-swiper-autoplay="image.delay">
             <img :src="item.url" :name="item.name">
           </swiper-slide>
         </swiper>
@@ -58,26 +58,32 @@ export default {
     fullscreenChange (fullscreen) {
       this.fullscreen = fullscreen
     },
+    autoplayStatus (val) {
+      let autoplay = this.swiperOption.autoplay = val ? val : this.image.autoplay
+      if (autoplay) {
+        this.swiper.autoplay.start()
+      } else {
+        this.swiper.autoplay.stop()
+      }
+    }
   },
   watch: {
     'image.autoplay': {
       handler: function (val) {
-        this.swiperOption.autoplay = val
-        if (val) {
-          this.swiper.autoplay.start()
-        } else {
-          this.swiper.autoplay.stop()
-        }
+        this.autoplayStatus(val)
       },
       deep: true
     },
-    'image.urls': {
+    'image.files': {
       handler: function (val) {
         const that = this
+        // 先暂停在改变自动播放状态（解决图片新增或删除轮播状态同步问题）
+        this.swiper.autoplay.stop()
+        this.autoplayStatus()
         // 延迟更新
         setTimeout(function () {
           that.swiper.update()
-        }, 100);
+        }, 100)
       },
       deep: true
     },
@@ -88,6 +94,9 @@ export default {
       },
       deep: true
     }
+  },
+  mounted () {
+    this.autoplayStatus()
   }
 }
 </script>

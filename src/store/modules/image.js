@@ -1,6 +1,6 @@
 const image = {
   state: {
-    urls: [],
+    files: [],
     delay: 3000,
     autoplay: false,
     index: null,
@@ -9,7 +9,7 @@ const image = {
   mutations: {
     // 设置图片URL
     SET_IMAGE_URL (state, value) {
-      state.urls.push(value)
+      state.files.push(value)
     },
     SET_IMAGE_INDEX (state, index) {
       state.index = index
@@ -24,7 +24,7 @@ const image = {
       state.resize = value
     },
     SET_IMAGE_REMOVE (state, value) {
-      state.urls.splice(value, 1)
+      state.files.splice(value, 1)
     }
   },
   actions: {

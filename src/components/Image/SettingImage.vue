@@ -15,7 +15,7 @@
           :on-remove="handleImageRemove"
           :on-exceed="handleImageExceed"
           :on-preview="handleImagePreview"
-          :file-list="image.urls"
+          :file-list="image.files"
           :auto-upload="false">
           <el-button style="width: 100%" slot="trigger" type="primary">选取图片</el-button>
           <div slot="tip" class="el-upload__tip">图片将本地持久化，因内存空间有限，限制最多添加5张，且单张图片不能超过2M</div>
@@ -27,8 +27,8 @@
       <li>
         <div class="flex-space-between">
           <p>
-            <span>自动轮播</span>
-            <span class="sub"></span>
+            <span>轮播</span>
+            <span class="sub">自动轮播图片</span>
           </p>
           <el-switch v-model="autoplay"></el-switch>
         </div>
@@ -36,7 +36,7 @@
         <div class="flex-space-between">
           <p>
             <span>自适应尺寸</span>
-            <span class="sub"></span>
+            <span class="sub">平铺居中自适应</span>
           </p>
           <el-switch v-model="resize"></el-switch>
         </div>
@@ -147,7 +147,7 @@ export default {
       this.$store.dispatch('SettingImageIndex', index)
     },
     fileIndex (name) {
-      return _.findIndex(this.image.urls, function (item) {
+      return _.findIndex(this.image.files, function (item) {
         return item.name === name
       })
     }
