@@ -1,10 +1,12 @@
 const global = {
   state: {
     activeName: 'backgroundImage',
+    colNum: 100,
+    rowHeight: 20,
     draggable: true,
     resizable: true,
     overflow: false,
-    margin: [5, 10],
+    margin: [10, 10],
     bgImage: {
       autoplay: false,
       delay: 3000,

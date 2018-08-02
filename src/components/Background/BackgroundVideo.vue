@@ -12,13 +12,11 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'BackgroundVideo',
-
   data () {
     return {
       
     }
   },
-
   computed: {
     ...mapGetters(['global']),
     bgVideo () {

@@ -47,7 +47,7 @@
           <p class="icon-image feature-message-icon">
             <img src="./images/icon-feature-message.png">
           </p>
-          <p>弹幕</p>
+          <p>滚屏</p>
         </div>
       </li>
       <li id="FeatureVideo">
@@ -127,7 +127,7 @@ export default {
       // 开始拖拽
       .on('drag', function(el, source) {
 
-        _this.$store.dispatch('DragId', el.id)
+        _this.$store.dispatch('SettingAppDragId', el.id)
 
         // _this.drag = el.id
         console.log(`被拖拽的模块ID:${el.id}`)
@@ -140,10 +140,7 @@ export default {
       .on('drop', function(el, target, source, sibling) {
         // el.classList.add('is-inner')
         console.log(`移入目标容器ID:${target.id}`)
-        _this.$store.dispatch('TargetId', target.id)
-
-        // 更新已使用容器，已存在，将不会再允许添加模块
-        // _this.$store.dispatch('Occupied', target.id)
+        _this.$store.dispatch('SettingAppTargetId', target.id)
 
       })
 

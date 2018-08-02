@@ -6,15 +6,15 @@
           <p class=""></p>
         </div>
         <ul>
-          <li @click="dragLayout">
+          <li @click="dragLayout" :class="{active:sidebar.module[0].component === 'drag' && sidebar.opened}">
             <p class="icon-image drag-layout-icon"></p>
             <p>布局</p>
           </li>
-          <li @click="customFeature">
+          <li @click="customFeature" :class="{active:sidebar.module[0].component === 'custom' && sidebar.opened}">
             <p class="icon-image custom-feature-icon"></p>
             <p>功能</p>
           </li>
-          <li @click="globalSetting">
+          <li @click="globalSetting" :class="{active:sidebar.module[0].component === 'global' && sidebar.opened}">
             <p class="icon-image global-setting-icon"></p>
             <p>全局设置</p>
           </li>
@@ -55,19 +55,19 @@ export default {
   },
   methods: {
     toggleSideBar () {
-      this.$store.dispatch('ToggleSideBar')
+      this.$store.dispatch('SettingAppToggleSideBar')
     },
     dragLayout () {
       let val = [{ component: 'drag' }]
-      this.$store.dispatch('SidebarModule', val)
+      this.$store.dispatch('SettingAppSidebarModule', val)
     },
     customFeature () {
       let val = [{ component: 'custom' }]
-      this.$store.dispatch('SidebarModule', val)
+      this.$store.dispatch('SettingAppSidebarModule', val)
     },
     globalSetting () {
       let val = [{ component: 'global' }]
-      this.$store.dispatch('SidebarModule', val)
+      this.$store.dispatch('SettingAppSidebarModule', val)
     },
     fullscreen () {
       EventBus.$emit('toggleFullScreen')
@@ -123,15 +123,33 @@ export default {
         color: #444;
       }
       li {
+        position: relative;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         width: 100%;
-        margin-bottom: 30px;
+        padding: 5px 0;
+        margin-bottom: 20px;
         cursor: pointer;
+        &:active {
+          background-color: #F9F9F9;
+        }
         p {
           width: 100%;
           text-align: center;
+        }
+      }
+      li.active {
+        &:after {
+          content: '';
+          position: absolute;
+          right: -10px;
+          top: 50%;
+          width: 10px;
+          height: 10px;
+          margin-top: -10px;
+          background-color: #fff;
+          transform: translateX(-50%) rotate(45deg);
         }
       }
       .fullscreen {

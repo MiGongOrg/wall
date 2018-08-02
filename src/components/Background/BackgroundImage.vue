@@ -15,7 +15,6 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
   name: 'BackgroundImage',
-
   data () {
     return {
       swiperSlides: [],
@@ -26,7 +25,6 @@ export default {
       }
     }
   },
-
   components: {
     swiper,
     swiperSlide

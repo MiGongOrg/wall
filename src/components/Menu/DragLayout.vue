@@ -39,16 +39,19 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['layout']),
+    ...mapGetters(['layout'], ['global']),
     layout () {
       return this.$store.state.app.layout
+    },
+    global () {
+      return this.$store.state.global
     }
   },
   methods: {
     // 重新计算尺寸
     resize (topHeight) {
-      let rowHeight = this.layout.rowHeight
-        , margin = this.layout.margin[0]
+      let rowHeight = this.global.rowHeight
+        , margin = this.global.margin[0]
         , wh = window.innerHeight
         , th = topHeight ? (rowHeight + margin) * topHeight : 0
         , h = wh - th
@@ -75,7 +78,6 @@ export default {
             "component": 'FeatureDefault',
             "id": "a"
           }],
-          "setting": [{}],
         }
       ]
 
@@ -84,7 +86,7 @@ export default {
       // 初始化高度
       val[0].h = this.resize()
 
-      this.$store.dispatch('LayoutInit', val)
+      this.$store.dispatch('SettingAppLayout', val)
     },
     two () {
       this.active_el = 2
@@ -124,7 +126,7 @@ export default {
       val[0].h = h
       val[1].h = h
 
-      this.$store.dispatch('LayoutInit', val)
+      this.$store.dispatch('SettingAppLayout', val)
     },
     three () {
       this.active_el = 3
@@ -180,7 +182,7 @@ export default {
       val[1].h = h
       val[2].h = h
 
-      this.$store.dispatch('LayoutInit', val)
+      this.$store.dispatch('SettingAppLayout', val)
     },
     four () {
       this.active_el = 4
@@ -250,7 +252,7 @@ export default {
       val[2].h = h / 2
       val[3].h = h / 2
 
-      this.$store.dispatch('LayoutInit', val)
+      this.$store.dispatch('SettingAppLayout', val)
     }
   }
 }

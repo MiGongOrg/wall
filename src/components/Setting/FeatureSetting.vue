@@ -31,12 +31,12 @@ export default {
     },
     setting () {
       let val = [{ component: this.settingName }]
-      this.$store.dispatch('SidebarModule', val)
+      this.$store.dispatch('SettingAppSidebarModule', val)
     },
     close () {
       document.getElementById(this.parentId).innerHTML = ''
       // 清空该容器内的功能模块，设置为 default
-      this.$store.dispatch('ClearFeature', this.parentId)
+      this.$store.dispatch('SettingAppClearFeature', this.parentId)
     }
   }
 }

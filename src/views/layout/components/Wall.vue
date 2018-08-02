@@ -2,18 +2,18 @@
   <div class="wall" :style="{ overflow: global.overflow ? 'auto' : 'hidden' }">
     <fs ref="fullscreenWall" @change="fullscreenChange" :background="fsbackground" class="full-screen">
       <grid-layout
-        :layout="layout.init"
-        :col-num="layout.colNum"
-        :row-height="layout.rowHeight"
+        :layout="layout"
+        :col-num="global.colNum"
+        :row-height="global.rowHeight"
         :is-draggable="global.draggable"
         :is-resizable="global.resizable"
         :is-mirrored="false"
         :autoSize="true"
         :vertical-compact="true"
-        :margin="layout.margin"
+        :margin="global.margin"
         :use-css-transforms="true"
       >
-        <grid-item v-for="item in layout.init" :key="item.id"
+        <grid-item v-for="item in layout" :key="item.id"
           :x="item.x"
           :y="item.y"
           :w="item.w"
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import { array } from 'lodash'
 import EventBus from '@/assets/EventBus.js'
 import { GridLayout, GridItem } from 'vue-grid-layout'
@@ -61,6 +62,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['layout'], ['global']),
     layout () {
       return this.$store.state.app.layout
     },
@@ -73,7 +75,7 @@ export default {
     // 可视窗口高度
     let wh = window.innerHeight
     // 初始化容器高度
-    this.layout.init[0].h = Math.floor(wh / (this.layout.rowHeight + this.layout.margin[0]))
+    this.layout[0].h = Math.floor(wh / (this.global.rowHeight + this.global.margin[0]))
 
     // 全屏 Wall
     EventBus.$on('toggleFullScreen', (payLoad) => {

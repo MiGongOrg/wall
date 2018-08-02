@@ -162,13 +162,5 @@ export default {
     .el-upload {
       display: block;
     }
-    .title-item {
-      width: 100%;
-      font-size: 16px;
-      color: #333;
-      border-bottom: 1px solid tomato;
-      padding: 5px 0;
-      margin-bottom: 10px;
-    }
   }
 </style>
