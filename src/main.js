@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import i18n from './locales'
 import Wilddog from 'wilddog'
 import WildVue from 'wildvue'
 
@@ -59,7 +60,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(fullscreen, {name: 'fs'})
 
 /* 野狗云 */
-
 Vue.use(Wilddog)
 Vue.use(WildVue)
 
@@ -80,7 +80,7 @@ Vue.config.productionTip = isDebug_mode
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
+  i18n,
   router,
   store,
   components: { App },
@@ -88,4 +88,4 @@ new Vue({
   wilddog: {
     ref: ref
   }
-})
+}).$mount('#app')

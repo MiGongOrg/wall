@@ -8,19 +8,19 @@
         <ul>
           <li @click="dragLayout" :class="{active:sidebar.module[0].component === 'drag' && sidebar.opened}">
             <p class="icon-image drag-layout-icon"></p>
-            <p>布局</p>
+            <p>{{ $t('sidebar.layout') }}</p>
           </li>
           <li @click="customFeature" :class="{active:sidebar.module[0].component === 'custom' && sidebar.opened}">
             <p class="icon-image custom-feature-icon"></p>
-            <p>功能</p>
+            <p>{{ $t('sidebar.custom') }}</p>
           </li>
           <li @click="globalSetting" :class="{active:sidebar.module[0].component === 'global' && sidebar.opened}">
             <p class="icon-image global-setting-icon"></p>
-            <p>全局设置</p>
+            <p>{{ $t('sidebar.setting') }}</p>
           </li>
           <li class="fullscreen" @click="fullscreen">
             <p class="icon-image fullscreen-lightning-icon"></p>
-            <p>预览</p>
+            <p>{{ $t('sidebar.preview') }}</p>
           </li>
         </ul>
       </div>
