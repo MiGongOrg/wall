@@ -1,8 +1,8 @@
 <template>
-  <div class="feature-title">
-    <fs ref="fullscreenTitle" @change="fullscreenChange" :background="fsbackground" class="full-screen">
-      <div class="full-screen-content" :style="{ backgroundColor: `rgba(${title.bgColor.rgbaStr})`}">
-        <span class="title" :style="{ fontSize: `${title.fontSize}px`, color: `rgba(${title.textColor.rgbaStr})` }">{{title.text}}</span>
+  <div class="feature-text">
+    <fs ref="fullscreenText" @change="fullscreenChange" :background="fsbackground" class="full-screen">
+      <div class="full-screen-content" :style="{ backgroundColor: `rgba(${text.bgColor.rgbaStr})`}">
+        <span class="text" :style="{ fontSize: `${text.fontSize}px`, color: `rgba(${text.color.rgbaStr})` }">{{text.content}}</span>
         <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
       </div>
     </fs>
@@ -15,11 +15,11 @@ import { FeatureSetting } from '@/components/Setting'
 
 export default {
 
-  name: 'FeatureTitle',
+  name: 'FeatureText',
 
   data () {
     return {
-      settingName: 'SettingTitle',
+      settingName: 'SettingText',
       fsbackground: '#fff',
       fullscreen: false,
     }
@@ -31,24 +31,24 @@ export default {
   methods: {
     // 全屏
     toggleFullScreen () {
-      this.$refs['fullscreenTitle'].toggle()
+      this.$refs['fullscreenText'].toggle()
     },
     fullscreenChange (fullscreen) {
       this.fullscreen = fullscreen
     },
   },
   computed: {
-    ...mapGetters(['title']),
-    title () {
-      return this.$store.state.title
+    ...mapGetters(['text']),
+    text () {
+      return this.$store.state.text
     }
   }
 }
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .feature-title {
-    .title {
+  .feature-text {
+    .text {
       width: 100%;
       text-align: center;
     }

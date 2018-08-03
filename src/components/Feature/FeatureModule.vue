@@ -15,7 +15,7 @@
 import { mapGetters } from 'vuex'
 
 import { FeatureDefault } from '@/components/Default'
-import { FeatureTitle } from '@/components/Title'
+import { FeatureText } from '@/components/Text'
 import { FeatureQrcode } from '@/components/Qrcode'
 import { FeatureImage } from '@/components/Image'
 import { FeatureClock } from '@/components/Clock'
@@ -35,7 +35,7 @@ export default {
   props: ['brick', 'index'],
   components: {
     FeatureDefault,
-    FeatureTitle,
+    FeatureText,
     FeatureQrcode,
     FeatureClock,
     FeatureBarrage,

@@ -1,5 +1,5 @@
 <template>
-  <div class="setting-title">
+  <div class="setting-text">
     <h2>{{$t('message.text')}} {{$t('message.setting')}}</h2>
     <h3>{{$t('message.text')}}</h3>
     <ul>
@@ -24,7 +24,7 @@
             <span>{{$t('message.text')}} {{$t('message.color')}}</span>
             <span class="sub">点击右侧色块修改</span>
           </p>
-          <picker :color="textColor"></picker>
+          <picker :color="color"></picker>
         </div>
       </li>
     </ul>
@@ -43,7 +43,7 @@ import Picker from '../Picker'
 
 export default {
 
-  name: 'SettingTitle',
+  name: 'SettingText',
 
   data () {
     return {
@@ -54,40 +54,40 @@ export default {
     Picker: Picker
   },
   computed: {
-    ...mapGetters(['title']),
+    ...mapGetters(['text']),
     text: {
       get () {
-        return this.$store.state.title.text
+        return this.$store.state.text.content
       },
       set (value) {
-        this.$store.dispatch('SettingTitleText', value)
+        this.$store.dispatch('SettingTextContent', value)
       }
     },
     fontSize: {
       get () {
-        return this.$store.state.title.fontSize
+        return this.$store.state.text.fontSize
       },
       set (value) {
-        this.$store.dispatch('SettingTitleFontSize', value)
+        this.$store.dispatch('SettingTextFontSize', value)
       }
     },
-    textColor () {
-      return this.$store.state.title.textColor
+    color () {
+      return this.$store.state.text.color
     },
     bgColor () {
-      return this.$store.state.title.bgColor
+      return this.$store.state.text.bgColor
     }
   },
   watch: {
-    'textColor': {
+    'color': {
       handler: function (value) {
-        this.$store.dispatch('SettingTitleTextColor', value)
+        this.$store.dispatch('SettingTextColor', value)
       },
       deep: true
     },
     'bgColor': {
       handler: function (value) {
-        this.$store.dispatch('SettingTitleBgColor', value)
+        this.$store.dispatch('SettingTextBgColor', value)
       },
       deep: true
     }
@@ -96,7 +96,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .setting-title {
+  .setting-text {
     
   }
 </style>

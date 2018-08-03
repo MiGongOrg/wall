@@ -6,7 +6,7 @@ import global from './modules/global'
 import qrcode from './modules/qrcode'
 import barrage from './modules/barrage'
 import image from './modules/image'
-import title from './modules/title'
+import text from './modules/text'
 import clock from './modules/clock'
 import video from './modules/video'
 import iframe from './modules/iframe'
@@ -22,7 +22,7 @@ const store = new Vuex.Store({
     qrcode,
     barrage,
     image,
-    title,
+    text,
     clock,
     video,
     iframe

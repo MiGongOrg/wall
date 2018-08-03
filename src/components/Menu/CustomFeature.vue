@@ -2,10 +2,10 @@
   <div class="custom-feature">
     <h2>{{$t('message.custom')}}</h2>
     <ul id="custom-feature">
-      <li id="FeatureTitle">
+      <li id="FeatureText">
         <div class="feature-button-container">
-          <p class="icon-image feature-title-icon">
-            <img src="./images/icon-feature-title.png">
+          <p class="icon-image feature-text-icon">
+            <img src="./images/icon-feature-text.png">
           </p>
           <p>{{$t('message.text')}}</p>
         </div>

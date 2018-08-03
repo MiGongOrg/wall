@@ -19,7 +19,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { DragLayout, CustomFeature, GlobalSetting } from '@/components/Menu'
-import { SettingTitle } from '@/components/Title'
+import { SettingText } from '@/components/Text'
 import { SettingQrcode } from '@/components/Qrcode'
 import { SettingImage } from '@/components/Image'
 import { SettingClock } from '@/components/Clock'
@@ -44,7 +44,7 @@ export default {
     Drag: DragLayout,
     Custom: CustomFeature,
     Global: GlobalSetting,
-    SettingTitle,
+    SettingText,
     SettingQrcode,
     SettingClock,
     SettingBarrage,
