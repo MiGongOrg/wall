@@ -42,10 +42,10 @@
           <p>{{$t('message.bullet')}}</p>
         </div>
       </li>
-      <li id="FeatureMessage">
+      <li id="FeatureRolling">
         <div class="feature-button-container">
-          <p class="icon-image feature-message-icon">
-            <img src="./images/icon-feature-message.png">
+          <p class="icon-image feature-rolling-icon">
+            <img src="./images/icon-feature-rolling.png">
           </p>
           <p>{{$t('message.rolling')}}</p>
         </div>

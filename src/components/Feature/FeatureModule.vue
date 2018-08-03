@@ -22,6 +22,8 @@ import { FeatureClock } from '@/components/Clock'
 import { FeatureBarrage } from '@/components/Barrage'
 import { FeatureVideo } from '@/components/Video'
 import { FeatureIframe } from '@/components/Iframe'
+import { FeatureRolling } from '@/components/Rolling'
+
 
 export default {
   data () {
@@ -39,7 +41,8 @@ export default {
     FeatureBarrage,
     FeatureImage,
     FeatureVideo,
-    FeatureIframe
+    FeatureIframe,
+    FeatureRolling
   },
   computed: {
     global () {

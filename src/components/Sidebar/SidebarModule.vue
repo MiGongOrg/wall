@@ -26,6 +26,7 @@ import { SettingClock } from '@/components/Clock'
 import { SettingBarrage } from '@/components/Barrage'
 import { SettingVideo } from '@/components/Video'
 import { SettingIframe } from '@/components/Iframe'
+import { SettingRolling } from '@/components/Rolling'
 
 export default {
 
@@ -49,7 +50,8 @@ export default {
     SettingBarrage,
     SettingImage,
     SettingVideo,
-    SettingIframe
+    SettingIframe,
+    SettingRolling
   },
   // 在 DOM 加载后马上执行
   computed: {
