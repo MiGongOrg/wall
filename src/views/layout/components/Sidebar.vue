@@ -8,19 +8,19 @@
         <ul>
           <li @click="dragLayout" :class="{active:sidebar.module[0].component === 'drag' && sidebar.opened}">
             <p class="icon-image drag-layout-icon"></p>
-            <p>{{ $t('sidebar.layout') }}</p>
+            <p>{{ $t('message.layout') }}</p>
           </li>
           <li @click="customFeature" :class="{active:sidebar.module[0].component === 'custom' && sidebar.opened}">
             <p class="icon-image custom-feature-icon"></p>
-            <p>{{ $t('sidebar.custom') }}</p>
+            <p>{{ $t('message.custom') }}</p>
           </li>
           <li @click="globalSetting" :class="{active:sidebar.module[0].component === 'global' && sidebar.opened}">
             <p class="icon-image global-setting-icon"></p>
-            <p>{{ $t('sidebar.setting') }}</p>
+            <p>{{ $t('message.setting') }}</p>
           </li>
           <li class="fullscreen" @click="fullscreen">
             <p class="icon-image fullscreen-lightning-icon"></p>
-            <p>{{ $t('sidebar.preview') }}</p>
+            <p>{{ $t('message.preview') }}</p>
           </li>
         </ul>
       </div>

@@ -1,11 +1,12 @@
 <template>
   <div class="global-setting">
-    <h2>全局设置</h2>
-    <h3>背景类型</h3>
+    <h2>{{$t('message.global')}} {{$t('message.setting')}}</h2>
+    <h3>{{$t('message.background')}}</h3>
     <ul>
       <li>
         <el-tabs v-model="global.activeName" @tab-click="tabClick">
-          <el-tab-pane label="背景图片" name="backgroundImage">
+          <el-tab-pane name="backgroundImage">
+            <span slot="label">{{$t('message.image')}}</span>
             <el-upload
               class="upload-image"
               ref="upload"
@@ -19,22 +20,23 @@
               :on-preview="handleImagePreview"
               :file-list="global.bgImage.files"
               :auto-upload="false">
-              <el-button style="width: 100%" slot="trigger" type="primary">选取图片</el-button>
+              <el-button style="width: 100%" slot="trigger" type="primary">{{$t('message.choose')}}</el-button>
               <div slot="tip" class="el-upload__tip">图片将本地持久化，因内存空间有限，限制最多添加5张，且单张图片不能超过2M</div>
             </el-upload>
             <div class="flex-space-between margin-top">
-              <span>自动轮播</span>
+              <span>{{$t('message.loop')}}</span>
               <el-switch v-model="autoplay"></el-switch>
             </div>
             <div class="margin-top">
               <p class="flex-space-between">
-                <span>轮播间隔</span>
-                <span>{{delay}} 毫秒</span>
+                <span>{{$t('message.delay')}}</span>
+                <span>{{delay}}ms</span>
               </p>
               <el-slider v-model="delay" :min="1000" :max="10000" :step="1000" show-stops></el-slider>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="背景视频" name="backgroundVideo">
+          <el-tab-pane name="backgroundVideo">
+            <span slot="label">{{$t('message.video')}}</span>
             <el-upload
               class="upload-image"
               ref="upload"
@@ -46,11 +48,12 @@
               :on-exceed="handleVideoExceed"
               :file-list="global.bgVideo.files"
               :auto-upload="false">
-              <el-button style="width: 100%" slot="trigger" type="primary">选取视频</el-button>
+              <el-button style="width: 100%" slot="trigger" type="primary">{{$t('message.choose')}}</el-button>
               <div slot="tip" class="el-upload__tip">视频文件暂不支持本地持久化存储，如意外关闭或刷新网页，请删除视频重新添加</div>
             </el-upload>
           </el-tab-pane>
-          <el-tab-pane label="背景动画" name="backgroundAnim">
+          <el-tab-pane name="backgroundAnim">
+            <span slot="label">{{$t('message.animation')}}</span>
             <el-select
               v-model="global.bgAnim.activeName"
               placeholder="请选择"
@@ -68,12 +71,12 @@
         </el-tabs>
       </li>
     </ul>
-    <h3>容器设置</h3>
+    <h3>{{$t('message.container')}}</h3>
     <ul>
       <li>
         <div class="flex-space-between">
           <p>
-            <span>拖拽布局</span>
+            <span>{{$t('message.drag')}}</span>
             <span class="sub">拖拽容器调整布局位置</span>
           </p>
           <el-switch v-model="draggable"></el-switch>
@@ -82,7 +85,7 @@
       <li>
         <div class="flex-space-between">
           <p>
-            <span>缩放尺寸</span>
+            <span>{{$t('message.resize')}}</span>
             <span class="sub">拉伸容器右下角缩放容器大小</span>
           </p>
           <el-switch v-model="resizable"></el-switch>
@@ -91,7 +94,7 @@
       <li>
         <div class="flex-space-between">
           <p>
-            <span>布局溢出</span>
+            <span>{{$t('message.overflow')}}</span>
             <span class="sub">是否允许容器布局溢出</span>
           </p>
           <el-switch v-model="overflow"></el-switch>
@@ -100,7 +103,7 @@
       <li>
         <div class="flex-space-between">
           <p>
-            <span>背景色</span>
+            <span>{{$t('message.color')}}</span>
             <span class="sub">点击右侧色块修改容器背景色</span>
           </p>
           <picker :color="global.bgColor"></picker>

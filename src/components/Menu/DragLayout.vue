@@ -1,6 +1,6 @@
 <template>
   <div class="drag-layout">
-    <h2>选择布局</h2>
+    <h2>{{$t('message.layout')}}</h2>
     <ul>
       <li @click="one" :class="{active:active_el == 1}">
         <p>

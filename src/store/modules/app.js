@@ -2,6 +2,8 @@ import { array } from 'lodash'
 
 const app = {
   state: {
+    language: 'cn',
+    version: '0.0.1',
     sidebar: {
       module: [{ component: 'global' }],
       opened: true
@@ -27,6 +29,9 @@ const app = {
     ]
   },
   mutations: {
+    SET_APP_LANGUAGE (state) {
+      state.language === 'cn' ? state.language = 'en' : state.language = 'cn'
+    },
     // 设置侧边栏状态
     SET_APP_TOGGLE_SIDEBAR (state) {
       state.sidebar.opened = !state.sidebar.opened
@@ -67,6 +72,10 @@ const app = {
     },
   },
   actions: {
+    // 设置语言
+    SettingAppLanguage ({commit}) {
+      commit('SET_APP_LANGUAGE')
+    },
     // 显示与隐藏侧边栏
     SettingAppToggleSideBar ({commit}) {
       commit('SET_APP_TOGGLE_SIDEBAR')

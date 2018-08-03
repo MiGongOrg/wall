@@ -1,38 +1,38 @@
 <template>
   <div class="setting-clock">
-    <h2>时间功能设置</h2>
-    <h3>时间类型</h3>
+    <h2>{{$t('message.time')}} {{$t('message.setting')}}</h2>
+    <h3>{{$t('message.time')}}</h3>
     <ul>
       <li>
         <el-tabs v-model="clock.activeName" @tab-click="tabClick">
-          <el-tab-pane label="当前时间" name="currentTime">
-            
+          <el-tab-pane name="currentTime">
+            <span slot="label">{{$t('message.time')}}</span>
           </el-tab-pane>
-          <el-tab-pane label="倒计时" name="countdown">
-
+          <el-tab-pane name="countdown">
+            <span slot="label">{{$t('message.countdown')}}</span>
             <el-radio-group v-model="clock.countdown.radio" @change="changeCountdown">
-              <el-radio :label="1" border>跨年倒计时</el-radio>
-              <el-radio :label="2" border>倒计时</el-radio>
+              <el-radio :label="1" border>{{$t('message.newYear')}} {{$t('message.countdown')}}</el-radio>
+              <el-radio :label="2" border>{{$t('message.countdown')}}</el-radio>
             </el-radio-group>
 
             <p class="countdown" v-if="clock.countdown.radio === 2">
               <el-input placeholder="秒" v-model="clock.countdown.digit"></el-input>
               <el-button-group>
-                <el-button type="primary" @click="startCountdown">开始</el-button>
-                <el-button type="primary" @click="pauseCountdown">暂停</el-button>
-                <el-button type="primary" @click="resetCountdown">重置</el-button>
+                <el-button type="primary" @click="startCountdown">{{$t('message.start')}}</el-button>
+                <el-button type="primary" @click="pauseCountdown">{{$t('message.pause')}}</el-button>
+                <el-button type="primary" @click="resetCountdown">{{$t('message.reset')}}</el-button>
               </el-button-group>
             </p>
 
           </el-tab-pane>
-          <el-tab-pane label="计数器" name="counter">
+          <el-tab-pane name="counter">
+            <span slot="label">{{$t('message.counter')}}</span>
             <div class="counter">
-              
               <el-input placeholder="秒" v-model="clock.counter.digit"></el-input>
               <el-button-group>
-                <el-button type="primary" @click="startCounter">开始</el-button>
-                <el-button type="primary" @click="pauseCounter">暂停</el-button>
-                <el-button type="primary" @click="resetCounter">重置</el-button>
+                <el-button type="primary" @click="startCounter">{{$t('message.start')}}</el-button>
+                <el-button type="primary" @click="pauseCounter">{{$t('message.pause')}}</el-button>
+                <el-button type="primary" @click="resetCounter">{{$t('message.reset')}}</el-button>
               </el-button-group>
             </div>
           </el-tab-pane>
@@ -200,6 +200,9 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss">
   .setting-clock {
+    .el-radio, .el-radio.is-bordered + .el-radio.is-bordered {
+      margin: 0 10px 10px 0;
+    }
     .countdown {
       margin-top: 10px;
     }
@@ -209,6 +212,8 @@ export default {
         flex: 1;
       }
       .el-input__inner {
+        padding: 0 10px;
+        text-align: center;
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
       }

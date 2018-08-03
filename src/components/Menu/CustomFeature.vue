@@ -1,13 +1,13 @@
 <template>
   <div class="custom-feature">
-    <h2>功能模块</h2>
+    <h2>{{$t('message.custom')}}</h2>
     <ul id="custom-feature">
       <li id="FeatureTitle">
         <div class="feature-button-container">
           <p class="icon-image feature-title-icon">
             <img src="./images/icon-feature-title.png">
           </p>
-          <p>标题</p>
+          <p>{{$t('message.text')}}</p>
         </div>
       </li>
       <li id="FeatureQrcode">
@@ -15,7 +15,7 @@
           <p class="icon-image feature-qrcode-icon">
             <img src="./images/icon-feature-qrcode.png">
           </p>
-          <p>二维码</p>
+          <p>{{$t('message.qrcode')}}</p>
         </div>
       </li>
       <li id="FeatureImage">
@@ -23,7 +23,7 @@
           <p class="icon-image feature-image-icon">
             <img src="./images/icon-feature-image.png">
           </p>
-          <p>图片</p>
+          <p>{{$t('message.image')}}</p>
         </div>
       </li>
       <li id="FeatureClock">
@@ -31,7 +31,7 @@
           <p class="icon-image feature-clock-icon">
             <img src="./images/icon-feature-clock.png">
           </p>
-          <p>时钟</p>
+          <p>{{$t('message.clock')}}</p>
         </div>
       </li>
       <li id="FeatureBarrage">
@@ -39,7 +39,7 @@
           <p class="icon-image feature-barrage-icon">
             <img src="./images/icon-feature-barrage.png">
           </p>
-          <p>弹幕</p>
+          <p>{{$t('message.bullet')}}</p>
         </div>
       </li>
       <li id="FeatureMessage">
@@ -47,7 +47,7 @@
           <p class="icon-image feature-message-icon">
             <img src="./images/icon-feature-message.png">
           </p>
-          <p>滚屏</p>
+          <p>{{$t('message.rolling')}}</p>
         </div>
       </li>
       <li id="FeatureVideo">
@@ -55,7 +55,7 @@
           <p class="icon-image feature-video-icon">
             <img src="./images/icon-feature-video.png">
           </p>
-          <p>视频</p>
+          <p>{{$t('message.video')}}</p>
         </div>
       </li>
       <li id="FeatureIframe">
@@ -63,7 +63,7 @@
           <p class="icon-image feature-iframe-icon">
             <img src="./images/icon-feature-iframe.png">
           </p>
-          <p>iframe</p>
+          <p>{{$t('message.iframe')}}</p>
         </div>
       </li>
     </ul>

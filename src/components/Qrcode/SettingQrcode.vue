@@ -1,17 +1,17 @@
 <template>
   <div class="setting-qrcode">
-    <h2>二维码功能设置</h2>
-    <h3>二维码地址</h3>
+    <h2>{{$t('message.qrcode')}} {{$t('message.setting')}}</h2>
+    <h3>{{$t('message.url')}}</h3>
     <ul>
       <li>
         <el-input v-model="url" placeholder="http://">
           <template slot="append">
-            <el-button type="primary" @click="addHistory">添加</el-button>
+            <el-button type="primary" @click="addHistory">{{$t('message.add')}}</el-button>
           </template>
         </el-input>
       </li>
     </ul>
-    <h3 v-if="history.length">历史记录</h3>
+    <h3 v-if="history.length">{{$t('message.history')}}</h3>
     <list :list="history" :on-remove="handleRemove" :on-preview="handlePreview"></list>
   </div>
 </template>

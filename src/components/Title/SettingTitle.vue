@@ -1,18 +1,18 @@
 <template>
   <div class="setting-title">
-    <h2>标题功能设置</h2>
-    <h3>标题</h3>
+    <h2>{{$t('message.text')}} {{$t('message.setting')}}</h2>
+    <h3>{{$t('message.text')}}</h3>
     <ul>
       <li>
-        <el-input v-model="text" placeholder="输入标题"></el-input>
+        <el-input v-model="text" placeholder="输入文字"></el-input>
       </li>
     </ul>
-    <h3>颜色</h3>
+    <h3>{{$t('message.color')}}</h3>
     <ul>
       <li>
         <div class="flex-space-between">
           <p>
-            <span>背景颜色</span>
+            <span>{{$t('message.background')}} {{$t('message.color')}}</span>
             <span class="sub">点击右侧色块修改</span>
           </p>
           <picker :color="bgColor"></picker>
@@ -21,14 +21,14 @@
       <li>
         <div class="flex-space-between">
           <p>
-            <span>文字颜色</span>
+            <span>{{$t('message.text')}} {{$t('message.color')}}</span>
             <span class="sub">点击右侧色块修改</span>
           </p>
           <picker :color="textColor"></picker>
         </div>
       </li>
     </ul>
-    <h3>字体大小</h3>
+    <h3>{{$t('message.font')}} {{$t('message.size')}}</h3>
     <ul>
       <li>
         <el-slider v-model="fontSize" :min="20" :max="60"></el-slider>

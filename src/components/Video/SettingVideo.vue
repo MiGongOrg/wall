@@ -1,11 +1,12 @@
 <template>
   <div class="setting-video">
-    <h2>视频功能设置</h2>
-    <h3>视频类型</h3>
+    <h2>{{$t('message.video')}} {{$t('message.setting')}}</h2>
+    <h3>{{$t('message.video')}}</h3>
     <ul>
       <li>
         <el-tabs v-model="activeName">
-          <el-tab-pane label="本地视频" name="local">
+          <el-tab-pane name="local">
+            <span slot="label">{{$t('message.video')}}</span>
             <el-upload
               class="upload-image"
               ref="upload"
@@ -18,15 +19,17 @@
               :on-exceed="handleVideoExceed"
               :file-list="videoFileList"
               :auto-upload="false">
-              <el-button style="width: 100%" slot="trigger" type="primary">选取视频</el-button>
+              <el-button style="width: 100%" slot="trigger" type="primary">{{$t('message.choose')}}</el-button>
             </el-upload>
             <controls-video :video.sync="videoLocal"></controls-video>
           </el-tab-pane>
-          <el-tab-pane label="链接地址" name="link">
+          <el-tab-pane name="link">
+            <span slot="label">{{$t('message.url')}}</span>
             <el-input v-model="linkUrl" placeholder="http://"></el-input>
             <controls-video :video.sync="videoLink"></controls-video>
           </el-tab-pane>
-          <el-tab-pane label="抓取视频" name="capture">
+          <el-tab-pane name="capture">
+            <span slot="label">{{$t('message.capture')}}</span>
             <el-input v-model="videoCapture.url" placeholder="http://"></el-input>
           </el-tab-pane>
         </el-tabs>

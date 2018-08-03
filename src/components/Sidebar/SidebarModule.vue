@@ -2,9 +2,16 @@
   <div class="sidebar-module">
     <div
       class="sidebar-item"
-      v-for="item in sidebar.module"
+      v-for="item in app.sidebar.module"
       :is="item.component"
     >
+    </div>
+    <div class="select-language" @click="selectLanguage">
+      <div class="language">
+        <p>{{$t('message.selectLanguage')}}</p>
+        <img :src="language[app.language]">
+      </div>
+      <p class="prompt-text">{{$t('message.selectLanguagePrompt')}}</p>
     </div>
   </div>
 </template>
@@ -26,7 +33,10 @@ export default {
 
   data () {
     return {
-
+      language: {
+        cn: require('./images/cn.png'),
+        en: require('./images/en.png'),
+      }
     }
   },
   components: {
@@ -43,11 +53,17 @@ export default {
   },
   // 在 DOM 加载后马上执行
   computed: {
-    ...mapGetters(['sidebar']),
-    sidebar () {
-      return this.$store.state.app.sidebar
+    ...mapGetters(['app']),
+    app () {
+      return this.$store.state.app
     }
   },
+  methods: {
+    selectLanguage () {
+      this.$store.dispatch('SettingAppLanguage')
+      this.$i18n.locale = this.app.language
+    }
+  }
 }
 </script>
 
@@ -61,6 +77,43 @@ export default {
       padding: 10px;
       ul {
         margin-bottom: 10px;
+      }
+    }
+    .select-language {
+      position: absolute;
+      left: 182.5px;
+      bottom: 0;
+      font-size: 14px;
+      color: #454545;
+      transform: translate(-50%, 0%);
+      .language {
+        box-sizing: border-box;
+        display: flex;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        p {
+          width: 100%;
+          flex: 1;
+        }
+      }
+      img {
+        display: block;
+        width: 32px;
+        height: 32px;
+        overflow: hidden;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+      }
+      .prompt-text {
+        box-sizing: border-box;
+        padding: 0 10px;
+        width: 245px;
+        height: 30px;
+        font-size: 12px;
+        color: #c9c9c9;
+        text-align: center;
       }
     }
   }

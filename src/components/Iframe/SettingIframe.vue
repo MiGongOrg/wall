@@ -1,12 +1,12 @@
 <template>
   <div class="setting-iframe">
-    <h2>iframe 功能设置</h2>
-    <h3>域名设置</h3>
+    <h2>{{$t('message.iframe')}} {{$t('message.setting')}}</h2>
+    <h3>{{$t('message.url')}}</h3>
     <ul>
       <li>
         <el-input v-model="url" placeholder="http://">
           <template slot="append">
-            <el-button type="primary" @click="addHistory">添加</el-button>
+            <el-button type="primary" @click="addHistory">{{$t('message.add')}}</el-button>
           </template>
         </el-input>
       </li>

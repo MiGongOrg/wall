@@ -1,7 +1,7 @@
 <template>
   <div class="setting-image">
-    <h2>图片功能设置</h2>
-    <h3>添加图片</h3>
+    <h2>{{$t('message.image')}} {{$t('message.setting')}}</h2>
+    <h3>{{$t('message.image')}}</h3>
     <ul>
       <li>
         <el-upload
@@ -17,17 +17,17 @@
           :on-preview="handleImagePreview"
           :file-list="image.files"
           :auto-upload="false">
-          <el-button style="width: 100%" slot="trigger" type="primary">选取图片</el-button>
+          <el-button style="width: 100%" slot="trigger" type="primary">{{$t('message.choose')}}</el-button>
           <div slot="tip" class="el-upload__tip">图片将本地持久化，因内存空间有限，限制最多添加5张，且单张图片不能超过2M</div>
         </el-upload>
       </li>
     </ul>
-    <h3>其它设置</h3>
+    <h3>{{$t('message.other')}}</h3>
     <ul>
       <li>
         <div class="flex-space-between">
           <p>
-            <span>轮播</span>
+            <span>{{$t('message.loop')}}</span>
             <span class="sub">自动轮播图片</span>
           </p>
           <el-switch v-model="autoplay"></el-switch>
@@ -35,7 +35,7 @@
       <li>
         <div class="flex-space-between">
           <p>
-            <span>自适应尺寸</span>
+            <span>{{$t('message.resize')}}</span>
             <span class="sub">平铺居中自适应</span>
           </p>
           <el-switch v-model="resize"></el-switch>
@@ -44,10 +44,10 @@
       <li>
         <div class="flex-space-between">
           <p>
-            <span>轮播间隔</span>
+            <span>{{$t('message.delay')}}</span>
             <span class="sub">拖动滑块修改间隔时间</span>
           </p>
-          <span>{{delay}} 毫秒</span>
+          <span>{{delay}}ms</span>
         </div>
         <el-slider v-model="delay" :min="1000" :max="10000" :step="1000" show-stops></el-slider>
       </li>

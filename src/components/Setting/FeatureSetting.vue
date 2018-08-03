@@ -2,13 +2,22 @@
   <div class="feature-setting">
     <ol>
       <li @click="fullscreen">
-        <p class="icon-image feature-fullscreen-icon"></p>
+        <el-tooltip class="item" placement="bottom">
+          <span slot="content">{{$t('message.preview')}}</span>
+          <p class="icon-image feature-fullscreen-icon"></p>
+        </el-tooltip>
       </li>
       <li @click="setting">
-        <p class="icon-image feature-setting-icon"></p>
+        <el-tooltip class="item" placement="bottom">
+          <span slot="content">{{$t('message.setting')}}</span>
+          <p class="icon-image feature-setting-icon"></p>
+        </el-tooltip>
       </li>
       <li @click="close">
-        <p class="icon-image feature-close-icon"></p>
+        <el-tooltip class="item" placement="bottom">
+          <span slot="content">{{$t('message.close')}}</span>
+          <p class="icon-image feature-close-icon"></p>
+        </el-tooltip>
       </li>
     </ol>
   </div>
