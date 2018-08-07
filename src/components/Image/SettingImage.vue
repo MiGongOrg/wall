@@ -125,7 +125,7 @@ export default {
 
     },
     beforeRemove (file) {
-      return this.$confirm(`确定移除 ${ file.name }`, '提示', {
+      return this.$confirm(`${this.$i18n.t('message.remove')} ${ file.name }`, `${this.$i18n.t('message.prompt')}`, {
         type: 'warning'
       })
     },
@@ -135,7 +135,7 @@ export default {
       this.$store.dispatch('SettingImageRemove', index)
       this.$message({
         type: 'success',
-        message: '删除成功!'
+        message: `${this.$i18n.t('message.success')}`
       })
     },
     handleImageExceed (files, fileList) {

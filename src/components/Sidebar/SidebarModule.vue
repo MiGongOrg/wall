@@ -106,7 +106,12 @@ export default {
         overflow: hidden;
         border-radius: 50%;
         cursor: pointer;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        &:hover {
+          box-shadow: 0px 0px 10px rgba(33,32,36,.3);
+        }
+        &:active {
+          box-shadow: 0px 0px 10px rgba(33,32,36,.5);
+        }
       }
       .prompt-text {
         box-sizing: border-box;

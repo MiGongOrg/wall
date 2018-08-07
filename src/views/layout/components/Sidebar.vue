@@ -131,12 +131,41 @@ export default {
         padding: 5px 0;
         margin-bottom: 20px;
         cursor: pointer;
-        &:active {
-          background-color: #F9F9F9;
-        }
         p {
           width: 100%;
           text-align: center;
+        }
+        &:after {
+
+        }
+      }
+      .icon-image {
+        position: relative;
+        &:hover {
+          &:before {
+            transform: scale(1);
+          }
+        }
+        &:active {
+          &:before {
+            background-color: rgba(33,32,36,.122);
+          }
+        }
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          bottom: -10px;
+          left: -10px;
+          background-color: rgba(33,32,36, .059);
+          border-radius: 50%;
+          box-sizing: border-box;
+          transition-duration: .15s;
+          transition-timing-function: cubic-bezier(0.4,0.0,0.2,1);
+          transform: scale(0);
+          transition-property: transform, opacity;
         }
       }
       li.active {

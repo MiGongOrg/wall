@@ -101,7 +101,9 @@ export default {
       this.$store.dispatch('SettingVideoLocalUrl', file.url)
     },
     beforeRemove (file) {
-      return this.$confirm(`确定移除 ${ file.name }`, '提示', {
+      return this.$msgbox({
+        title: `${this.$i18n.t('message.prompt')}`,
+        message: `${this.$i18n.t('message.remove')} ${ file.name }`,
         type: 'warning'
       })
     },
@@ -109,7 +111,7 @@ export default {
       this.$store.dispatch('SettingVideoLocalUrl', '')
       this.$message({
         type: 'success',
-        message: '删除成功!'
+        message: `${this.$i18n.t('message.success')}`
       })
     },
     handleVideoExceed (file) {

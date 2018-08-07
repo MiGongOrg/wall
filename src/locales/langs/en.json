@@ -41,5 +41,8 @@
   "newYear": "New Year",
   "capture": "Capture",
   "autoplay": "Autoplay",
-  "controls": "Controls"
+  "controls": "Controls",
+  "prompt": "Prompt",
+  "remove": "Remove",
+  "success": "Success"
 }
