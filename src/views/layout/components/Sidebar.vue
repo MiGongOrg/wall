@@ -93,7 +93,7 @@ export default {
       width: 100%;
       height: 16px;
       background-color: #CDCDCD;
-      cursor: ew-resize;
+      cursor: pointer;
       p {
         position: absolute;
         left: 43px;

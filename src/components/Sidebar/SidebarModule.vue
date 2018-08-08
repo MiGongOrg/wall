@@ -76,7 +76,8 @@ export default {
       height: 100%;
       width: 245px;
       background-color: #fff;
-      padding: 10px;
+      padding: 10px 10px 100px 10px;
+      overflow: auto;
       ul {
         margin-bottom: 10px;
       }
@@ -88,6 +89,8 @@ export default {
       font-size: 14px;
       color: #454545;
       transform: translate(-50%, 0%);
+      background-color: #fff;
+      z-index: 9999;
       .language {
         box-sizing: border-box;
         display: flex;
