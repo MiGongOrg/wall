@@ -2,18 +2,18 @@
   <div class="barrage" v-show="isShow" ref="stage">
     <div class="top">
       <div v-for="item in topQueue" v-bind:style="item.style" v-bind:key="item.id" class="item" v-bind:class="item.barrageStyle">
-        <div class="avatar"><img :src="item.avatar"></div>
-        <div class="msg">{{ item.msg }}</div>
+        <div class="avatar"><img :src="item.message.user.avatarUrl"></div>
+        <div class="content">{{ item.message.content }}</div>
       </div>
     </div>
-    <div v-for="item in barrageList" v-bind:style="item.style" v-bind:key="item.id"  class="item" v-bind:class="item.barrageStyle">
-      <div class="avatar"><img :src="item.avatar"></div>
-      <div class="msg">{{ item.msg }}</div>
+    <div v-for="item in barrageList" v-bind:style="item.style" v-bind:key="item.id"  class="item" v-bind:class="item.barrageStyle" v-if="item.message.type === 'speak'">
+        <div class="avatar"><img :src="item.message.user.avatarUrl"></div>
+        <div class="content">{{ item.message.content }}</div>
     </div>
     <div class="bottom">
       <div v-for="item in bottomQueue" v-bind:key="item.id" v-bind:style="item.style" class="item" v-bind:class="item.barrageStyle">
-        <div class="avatar"><img :src="item.avatar"></div>
-        <div class="msg">{{ item.msg }}</div>
+        <div class="avatar"><img :src="item.message.user.avatarUrl"></div>
+        <div class="content">{{ item.message.content }}</div>
       </div>
     </div>
   </div>
@@ -196,7 +196,8 @@ export default {
       item.startTime = timestamp
       item.currentTime = timestamp
       item.speed = this.boxWidthVal / (item.time * 1000)
-      item.width = this.strlen(item.msg) * 6 + 50
+      // 计算文字容器宽度
+      item.width = this.strlen(item.message.content) * 9 + 50
       if (item.type === 0) {
         item.left = this.boxWidthVal
         item.top = parseInt(Math.random() * this.boxHeightVal)
@@ -221,12 +222,12 @@ export default {
     },
     // 计算中英文的长度
     strlen (str) {
-      var len = 0
-      for (var i in str) {
+      let len = 0
+      for (let i = 0; i < str.length; i++) {
         if (str.charCodeAt(i) > 127 || str.charCodeAt(i) === 94) {
           len += 2
         } else {
-          len++
+          ++len
         }
       }
       return len
@@ -240,29 +241,38 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow:hidden;
+  overflow: hidden;
   .item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     position: absolute;
-    width:auto;
-    display:block;
-    color:#000;
-    padding:5px 8px;
-    text-align:left;
+    width: auto;
+    color: #000;
+    padding: 5px 8px;
+    text-align: left;
   }
   .avatar {
-    float:left;
-    width:30px;
-    height:30px;
-    border-radius:50px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     overflow: hidden;
     img {
-      width:30px;
+      display: block;
+      width: auto;
+      height: auto;
+      max-height: 100%;
+      max-width: 100%;
     }
   }
-  .msg{
-    float:left;
-    line-height:30px;
-    padding-left:8px;
+  .content {
+    flex: 1;
+    line-height: 30px;
+    padding-left: 8px;
+    font-size: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   // 可自定义样式
   .item.normal{

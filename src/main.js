@@ -1,7 +1,10 @@
+import { mapState } from 'vuex'
 import Vue from 'vue'
 import i18n from './locales'
-import Wilddog from 'wilddog'
-import WildVue from 'wildvue'
+
+import utils from './assets/utils.js'
+// 注册全局方法，可以这样用：this.$utils.getUrlKey("channel")
+Vue.prototype.$utils = utils
 
 import fullscreen from 'vue-fullscreen'
 
@@ -14,6 +17,14 @@ import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import solid from '@fortawesome/fontawesome-free-solid'
 import regular from '@fortawesome/fontawesome-free-regular'
 import brands from '@fortawesome/fontawesome-free-brands'
+
+// socket.io
+import VueSocketio from 'vue-socket.io-extended'
+import io from 'socket.io-client'
+
+// 动态获取ID并加入房间
+const id = utils.getUrlKey('id')
+Vue.use(VueSocketio, io(`http://127.0.0.1:4000?roomId=${id}`,{ autoConnect: true }), { store })
 
 import 'normalize.css/normalize.css'
 
@@ -59,18 +70,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(fullscreen, {name: 'fs'})
 
-/* 野狗云 */
-Vue.use(Wilddog)
-Vue.use(WildVue)
-
 Vue.config.productionTip = false
-
-// 初始化野狗云
-var wilddog = Wilddog.initializeApp({
-  syncURL: 'https://wd5619279824ctzdha.wilddogio.com'
-})
-
-let ref = wilddog.sync().ref('chats')
 
 // 生产环境关闭调试信息
 const isDebug_mode = process.env.NODE_ENV !== 'production'
@@ -84,8 +84,5 @@ new Vue({
   router,
   store,
   components: { App },
-  template: '<App/>',
-  wilddog: {
-    ref: ref
-  }
+  template: '<App/>'
 }).$mount('#app')
