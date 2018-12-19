@@ -24,12 +24,12 @@ import io from 'socket.io-client'
 
 // 动态获取ID并加入房间
 const id = utils.getUrlKey('id')
-Vue.use(VueSocketio, io(`http://127.0.0.1:4000?roomId=${id}`,{ autoConnect: true }), { store })
+Vue.use(VueSocketio, io(`${BASE_URL}?roomId=${id}`,{ autoConnect: true }), { store })
 
 import 'normalize.css/normalize.css'
 
 // 按需引入 Element UI 组件
-import { Slider, Input, Switch, Upload, Button, Tabs, TabPane, Radio, RadioGroup, ButtonGroup, Tooltip, MessageBox, Message, Select, Option, Notification } from 'element-ui'
+import { Slider, Input, Switch, Upload, Button, Tabs, TabPane, Radio, RadioGroup, ButtonGroup, Tooltip, MessageBox, Message, Select, Option, Notification, Dialog } from 'element-ui'
 import './styles/element-variables.scss'
 // 初始化 Size
 Vue.prototype.$ELEMENT = { size: 'small', zIndex: 3000 }
@@ -47,6 +47,7 @@ Vue.use(Option)
 Vue.use(RadioGroup)
 Vue.use(ButtonGroup)
 Vue.use(Tooltip)
+Vue.use(Dialog)
 
 Vue.prototype.$msgbox = MessageBox
 Vue.prototype.$alert = MessageBox.alert

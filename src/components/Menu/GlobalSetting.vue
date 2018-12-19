@@ -190,11 +190,10 @@ export default {
       this.$store.dispatch('SettingGlobalActive', value)
     },
     handleImageChange (file, fileList) {
-
       const that = this
       let xhr = new XMLHttpRequest()
       let fileReader = new FileReader()
-      let url = file.url
+      let url = URL.createObjectURL(file.raw)
       let name = file.name
       // 本地持久化图片 https://www.w3ctech.com/topic/767
       xhr.open('GET', url, true)
@@ -244,7 +243,7 @@ export default {
     },
     handleVideoChange (file) {
       let value = {
-        url: file.url,
+        url: URL.createObjectURL(file.raw),
         name: file.name
       }
       this.$store.dispatch('SettingGlobalBgVideo', value)

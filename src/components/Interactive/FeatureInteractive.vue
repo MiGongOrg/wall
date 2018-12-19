@@ -1,13 +1,8 @@
 <template>
-  <div class="feature-barrage">
+  <div class="feature-interactive">
     <fs ref="fullscreenBarrage" @change="fullscreenChange" :background="fsbackground" class="full-screen">
       <div class="full-screen-content">
-        <barrage
-          :isShow="barrageIsShow"
-          :barrageList="messages"
-          :loop="barrage.loop"
-        >
-        </barrage>
+        <interactive></interactive>
         <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
       </div>
     </fs>
@@ -15,41 +10,25 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Barrage from './Barrage'
 import { FeatureSetting } from '@/components/Setting'
+import Interactive from './Interactive'
 
 export default {
 
-  name: 'FeatureBarrage',
+  name: 'FeatureStick',
 
   data () {
     return {
-      settingName: 'SettingBarrage',
+      settingName: 'SettingInteractive',
       fsbackground: '#fff',
-      fullscreen: false,
-      msg: 'Hello vue-baberrage',
-      barrageIsShow: true,
-      currentId : 0,
-      barrageLoop: false
+      fullscreen: false
     }
   },
   components: {
-    Barrage,
+    Interactive,
     FeatureSetting
   },
   props: ['parentId', 'index'],
-  computed: {
-    ...mapGetters(['barrage', 'socket']),
-    barrage () {
-      console.log(this.$store.state.barrage)
-      return this.$store.state.barrage
-    },
-    messages () {
-      console.log('messages=>>>', this.$store.state.socket.messages)
-      return this.$store.state.socket.messages
-    }
-  },
   methods: {
     // 全屏
     toggleFullScreen () {
@@ -63,7 +42,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .feature-barrage {
+  .feature-interactive {
 
   }
 </style>

@@ -27,6 +27,7 @@ import { SettingBarrage } from '@/components/Barrage'
 import { SettingVideo } from '@/components/Video'
 import { SettingIframe } from '@/components/Iframe'
 import { SettingRolling } from '@/components/Rolling'
+import { SettingInteractive } from '@/components/Interactive'
 
 export default {
 
@@ -51,7 +52,8 @@ export default {
     SettingImage,
     SettingVideo,
     SettingIframe,
-    SettingRolling
+    SettingRolling,
+    SettingInteractive
   },
   // 在 DOM 加载后马上执行
   computed: {

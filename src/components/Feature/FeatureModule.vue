@@ -23,6 +23,7 @@ import { FeatureBarrage } from '@/components/Barrage'
 import { FeatureVideo } from '@/components/Video'
 import { FeatureIframe } from '@/components/Iframe'
 import { FeatureRolling } from '@/components/Rolling'
+import { FeatureInteractive } from '@/components/Interactive'
 
 
 export default {
@@ -42,7 +43,8 @@ export default {
     FeatureImage,
     FeatureVideo,
     FeatureIframe,
-    FeatureRolling
+    FeatureRolling,
+    FeatureInteractive
   },
   computed: {
     global () {

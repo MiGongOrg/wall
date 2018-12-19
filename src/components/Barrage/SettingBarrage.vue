@@ -1,12 +1,12 @@
 <template>
   <div class="setting-barrage">
-    <h2>弹幕功能设置</h2>
-    <h3>循环轮播</h3>
+    <h2>{{$t('message.bullet')}} {{$t('message.setting')}}</h2>
+    <h3>{{$t('message.bullet')}}</h3>
     <ul>
       <li>
         <div class="flex-space-between">
           <p>
-            <span>循环播放</span>
+            <span>{{$t('message.loop')}}</span>
             <span class="sub">(重复循环播放弹幕内容)</span>
           </p>
           <el-switch v-model="loop"></el-switch>

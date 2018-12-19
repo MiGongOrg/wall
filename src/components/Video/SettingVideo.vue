@@ -98,7 +98,8 @@ export default {
   },
   methods: {
     handleVideoChange (file) {
-      this.$store.dispatch('SettingVideoLocalUrl', file.url)
+      let url = URL.createObjectURL(file.raw)
+      this.$store.dispatch('SettingVideoLocalUrl', url)
     },
     beforeRemove (file) {
       return this.$msgbox({

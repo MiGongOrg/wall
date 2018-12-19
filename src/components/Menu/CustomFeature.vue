@@ -66,6 +66,14 @@
           <p>{{$t('message.iframe')}}</p>
         </div>
       </li>
+      <li id="FeatureInteractive">
+        <div class="feature-button-container">
+          <p class="icon-image feature-interactive-icon">
+            <img src="./images/icon-feature-interactive.png">
+          </p>
+          <p>{{$t('message.interactive')}}</p>
+        </div>
+      </li>
     </ul>
     <p class="prompt">拖拽功能图标到左侧容器内</p>
   </div>
