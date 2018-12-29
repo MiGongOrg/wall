@@ -11,7 +11,7 @@
         </div>
         <div class="message">
           <div class="picture" v-if="item.message.type === 'picture'"><img :src="'http://img.migong.org/' + item.message.content"></div>
-          <div class="text" v-else>{{item.message.content}}</div>
+          <div class="text" v-html="item.message.content" v-else></div>
         </div>
       </div>
     </div>

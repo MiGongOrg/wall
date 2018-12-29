@@ -3,17 +3,17 @@
     <div class="top">
       <div v-for="item in topQueue" v-bind:style="item.style" v-bind:key="item.id" class="item" v-bind:class="item.barrageStyle">
         <div class="avatar"><img :src="item.message.user.avatarUrl"></div>
-        <div class="content">{{ item.message.content }}</div>
+        <div class="content" v-html="item.message.content"></div>
       </div>
     </div>
     <div v-for="item in barrageList" v-bind:style="item.style" v-bind:key="item.id"  class="item" v-bind:class="item.barrageStyle" v-if="item.message.type === 'speak'">
         <div class="avatar"><img :src="item.message.user.avatarUrl"></div>
-        <div class="content">{{ item.message.content }}</div>
+        <div class="content" v-html="item.message.content"></div>
     </div>
     <div class="bottom">
       <div v-for="item in bottomQueue" v-bind:key="item.id" v-bind:style="item.style" class="item" v-bind:class="item.barrageStyle">
         <div class="avatar"><img :src="item.message.user.avatarUrl"></div>
-        <div class="content">{{ item.message.content }}</div>
+        <div class="content" v-html="item.message.content"></div>
       </div>
     </div>
   </div>
@@ -222,15 +222,22 @@ export default {
     },
     // 计算中英文的长度
     strlen (str) {
+      // 标签图片数量
+      let imgLen = 0
+      let imgArr = str.match(/<img[^>]+src=['"]([^'"]+)['">]+/g)
+      if (imgArr) {imgLen = imgArr.length}
+      // 删除HTML标签
+      let handleStr = str.replace(/<[^>]*>|<\/[^>]*>/gm, '')
+
       let len = 0
-      for (let i = 0; i < str.length; i++) {
-        if (str.charCodeAt(i) > 127 || str.charCodeAt(i) === 94) {
+      for (let i = 0; i < handleStr.length; i++) {
+        if (handleStr.charCodeAt(i) > 127 || handleStr.charCodeAt(i) === 94) {
           len += 2
         } else {
           ++len
         }
       }
-      return len
+      return len + (imgLen * 3)
     }
   }
 }
@@ -267,12 +274,19 @@ export default {
   }
   .content {
     flex: 1;
-    line-height: 30px;
+    display: flex;
+    align-items: center;
     padding-left: 8px;
     font-size: 18px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    .emoji {
+      display: inline-block;
+      vertical-align: middle;
+      width: 28px;
+      height: 28px;
+    }
   }
   // 可自定义样式
   .item.normal{

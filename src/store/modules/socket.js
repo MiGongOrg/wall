@@ -9,15 +9,22 @@ const socket = {
     // 新消息
     'SOCKET_NEW MESSAGE': (state, messages) => {
       let strlen = function (str) {
+        // 标签图片数量
+      let imgLen = 0
+      let imgArr = str.match(/<img[^>]+src=['"]([^'"]+)['">]+/g)
+      if (imgArr) {imgLen = imgArr.length}
+      // 删除HTML标签
+      let handleStr = str.replace(/<[^>]*>|<\/[^>]*>/gm, '')
+
         let len = 0
-        for (let i = 0; i < str.length; i++) {
-          if (str.charCodeAt(i) > 127 || str.charCodeAt(i) === 94) {
+        for (let i = 0; i < handleStr.length; i++) {
+          if (handleStr.charCodeAt(i) > 127 || handleStr.charCodeAt(i) === 94) {
             len += 2
           } else {
             ++len
           }
         }
-        return len
+        return len + (imgLen * 3)
       }
 
       let len = strlen(messages.message.content)
