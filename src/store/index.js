@@ -11,6 +11,7 @@ import clock from './modules/clock'
 import video from './modules/video'
 import iframe from './modules/iframe'
 import socket from './modules/socket'
+import interactive from './modules/interactive'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -27,7 +28,8 @@ const store = new Vuex.Store({
     clock,
     video,
     iframe,
-    socket
+    socket,
+    interactive
   },
   getters,
   // 本地持久化 Storage 存储

@@ -1,6 +1,6 @@
 <template>
   <div class="countdown" v-if="isShow">
-    <div class="ribbon-box">
+    <div class="ribbon-box" :style="{width: `${bannerSize}%`}">
       <h1 class=ribbon>
         <i><u>共有 {{shakes.length}} 人参与</u></i>
       </h1>
@@ -28,12 +28,7 @@
             <path class="countdown-num-join-2-3" d="M28,69 Q25,44 34.4,27.4"/>
             <path class="countdown-num-path-3" d="M30,20 60,20 40,50 a18,15 0 1,1 -12,19"/>
           </defs>
-          <path class="countdown-numbers-path" 
-                d="M-10,20 60,20 40,50 a18,15 0 1,1 -12,19 
-                   Q25,44 34.4,27.4
-                   l7,-7 a16,16 0 0,1 22.6,22.6 l-30,30 l35,0 L69,73 
-                   a20,10 0 0,1 20,10 a17,17 0 0,1 -34,0 L55,83 
-                   l0,-61 L40,28" />
+          <path class="countdown-numbers-path" d="M-10,20 60,20 40,50 a18,15 0 1,1 -12,19 Q25,44 34.4,27.4 l7,-7 a16,16 0 0,1 22.6,22.6 l-30,30 l35,0 L69,73 a20,10 0 0,1 20,10 a17,17 0 0,1 -34,0 L55,83 l0,-61 L40,28" />
         </svg>
       </div>
     </div>
@@ -73,10 +68,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['socket']),
+    ...mapGetters(['socket', 'interactive']),
     shakes () {
       return this.$store.state.socket.shakes
     },
+    bannerSize () {
+      return this.$store.state.interactive.bannerSize
+    }
   },
   methods: {
     startGame () {
@@ -140,10 +138,9 @@ export default {
     .countdown-box {
       position: absolute;
       left: 50%;
-      top: 50%;
+      bottom: 5%;
       width: $sizeBig;
       height: $size;
-      margin-top: $size / -2;
       padding: $pad;
       border-radius: 20px;
       transform: translateX(-50%);
@@ -293,10 +290,9 @@ export default {
     }
   }
   .ribbon-box {
-    width: 800px;
     margin: 0 auto;
-    border-top-left-radius: 33% 5%;
-    border-top-right-radius: 33% 5%;
+    border-top-left-radius: 50% 16px;
+    border-top-right-radius: 50% 16px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     transition: .2s;

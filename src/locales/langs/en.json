@@ -45,5 +45,6 @@
   "controls": "Controls",
   "prompt": "Prompt",
   "remove": "Remove",
-  "success": "Success"
+  "success": "Success",
+  "banner": "Banner"
 }

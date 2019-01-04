@@ -1,4 +1,4 @@
-const title = {
+const text = {
   state: {
     content: 'Hello World!',
     color: {
@@ -55,4 +55,4 @@ const title = {
   }
 }
 
-export default title
+export default text
