@@ -12,6 +12,7 @@ import video from './modules/video'
 import iframe from './modules/iframe'
 import socket from './modules/socket'
 import interactive from './modules/interactive'
+import rolling from './modules/rolling'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -29,7 +30,8 @@ const store = new Vuex.Store({
     video,
     iframe,
     socket,
-    interactive
+    interactive,
+    rolling
   },
   getters,
   // 本地持久化 Storage 存储

@@ -2,14 +2,14 @@
   <div class="rolling">
     <div v-for="item in rollingList" class="rolling-item">
       <div class="rolling-left">
-        <div class="avatar"><img :src="item.message.user.avatarUrl"></div>
+        <div class="avatar" :style="{ width: `${rolling.avatarSize}px`, height: `${rolling.avatarSize}px`}"><img :src="item.message.user.avatarUrl"></div>
       </div>
       <div class="rolling-right">
         <div class="rolling-right-header">
           <div class="nickName">{{item.message.user.nickName}}</div>
           <div class="time">{{item.message.time}}</div>
         </div>
-        <div class="message">
+        <div class="message" :style="{ backgroundColor: `rgba(${rolling.bgColor.rgbaStr})`, fontSize: `${rolling.fontSize}px`, color: `rgba(${rolling.color.rgbaStr})`}">
           <div class="picture" v-if="item.message.type === 'picture'"><img :src="'http://img.migong.org/' + item.message.content"></div>
           <div class="text" v-html="item.message.content" v-else></div>
         </div>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
 
   name: 'Rolling',
@@ -42,6 +43,12 @@ export default {
       setTimeout(() => {
         this.$emit('scrollToTop')
       }, 500);
+    }
+  },
+  computed: {
+    ...mapGetters(['rolling']),
+    rolling () {
+      return this.$store.state.rolling
     }
   }
 }
@@ -78,11 +85,11 @@ export default {
     width: 100%;
     text-align: left;
     color: #333;
+    font-size: 24px;
     .rolling-right-header {
       display: flex;
       align-items: center;
       justify-content: space-evenly;
-      font-size: 24px;
       height: 50px;
     }
     .nickName {
@@ -96,9 +103,7 @@ export default {
     .message {
       box-sizing: border-box;
       padding: 8px 15px;
-      font-size: 30px;
       width: 100%;
-      color: white;
       word-break: break-all;
       background-color: rgba(0, 0, 0, .3);
       border-top-right-radius: 6px;
