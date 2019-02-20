@@ -47,5 +47,7 @@
   "remove": "删除",
   "success": "成功",
   "banner": "横幅",
-  "avatar": "头像"
+  "avatar": "头像",
+  "clear": "清除",
+  "all": "全部"
 }

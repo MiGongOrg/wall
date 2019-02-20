@@ -47,5 +47,7 @@
   "remove": "Remove",
   "success": "Success",
   "banner": "Banner",
-  "avatar": "Avatar"
+  "avatar": "Avatar",
+  "clear": "Clear",
+  "all": "All"
 }

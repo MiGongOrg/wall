@@ -76,12 +76,20 @@ const socket = {
         shakesArr[index].count = 0
       })
       state.shakes = shakesArr
+    },
+    // 清空 messages 数据
+    DELETE_MSG_DATA (state) {
+      state.messages = []
     }
+
   },
   actions: {
     // 重置每个用户的摇一摇次数
     ResetShakesCount ({commit}) {
       commit('RESET_SHAKES_COUNT')
+    },
+    SettingMsgData ({commit}) {
+      commit('DELETE_MSG_DATA')
     }
   }
 }

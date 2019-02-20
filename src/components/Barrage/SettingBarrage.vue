@@ -12,6 +12,15 @@
           <el-switch v-model="loop"></el-switch>
         </div>
       </li>
+      <li>
+        <div class="flex-space-between">
+          <p>
+            <span>{{$t('message.remove')}}</span>
+            <span class="sub">清除全部消息</span>
+          </p>
+          <el-button @click="clearAllMsg" type="danger" icon="el-icon-delete" circle></el-button>
+        </div>
+      </li>
     </ul>
   </div>
 </template>
@@ -39,6 +48,24 @@ export default {
       }
     }
   },
+  methods: {
+    clearAllMsg () {
+
+      this.$confirm(`${this.$i18n.t('message.remove')} ${this.$i18n.t('message.all')}`, `${this.$i18n.t('message.prompt')}`, {
+        type: 'warning'
+      }).then(() => {
+        // 清空全部消息
+        this.$store.dispatch('SettingMsgData')
+        this.$message({
+          type: 'success',
+          message: `${this.$i18n.t('message.success')}`
+        })
+      }).catch(() => {
+        console.log('取消')
+      })
+
+    }
+  }
 }
 </script>
 
