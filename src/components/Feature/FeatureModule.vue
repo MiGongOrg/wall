@@ -79,8 +79,11 @@ export default {
     overflow: hidden;
     width: 100%;
     height: 100%;
+    border-style: dashed;
+    border-color: transparent;
+    border-width: 1px;
     &:hover {
-      border: 1px dashed #ddd;
+      border-color: #ddd;
       .feature-setting {
         top: 0;
       }
