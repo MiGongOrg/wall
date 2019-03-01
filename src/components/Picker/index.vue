@@ -1,6 +1,6 @@
 <template>
   <div class="picker">
-    <div class="color-picker" :style="{ backgroundColor: `rgba(${color.rgbaStr})` }" @click="showToggle"></div>
+    <div class="color-picker" :style="{ backgroundColor: `rgba(${color.rgbaStr})` }" @click.stop="isShow=!isShow"></div>
       <chrome-picker :value="color.rgba" @input="updateColor" v-if="isShow"></chrome-picker>
   </div>
 </template>
@@ -27,18 +27,13 @@ export default {
     ChromePicker: Chrome
   },
   methods: {
-    showToggle () {
-      this.isShow = !this.isShow
-    },
     /* 更新颜色 */
     updateColor (value) {
-
       let rgbaObj = value.rgba
         , rgbaArr = Object.keys(rgbaObj).map(function(k){return rgbaObj[k]})
 
       this.color.rgba = rgbaObj
       this.color.rgbaStr = rgbaArr.toString()
-
     }
   },
   created () {
