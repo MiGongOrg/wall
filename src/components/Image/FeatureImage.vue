@@ -7,7 +7,7 @@
             <img :src="item.url" :name="item.name">
           </swiper-slide>
         </swiper>
-        <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
+        <feature-setting :parentId="parentId" :settingName="settingName" :isFullscreen="fullscreen" @toggleFullScreen="toggleFullScreen"></feature-setting>
       </div>
     </fs>
   </div>

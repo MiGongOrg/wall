@@ -3,7 +3,7 @@
     <fs ref="fullscreenIframe" @change="fullscreenChange" :background="fsbackground" class="full-screen">
       <div class="full-screen-content">
         <iframe :src="iframe.url" frameborder="0"></iframe>
-        <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
+        <feature-setting :parentId="parentId" :settingName="settingName" :isFullscreen="fullscreen" @toggleFullScreen="toggleFullScreen"></feature-setting>
       </div>
     </fs>
   </div>

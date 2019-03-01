@@ -7,13 +7,13 @@
           <p class="icon-image feature-fullscreen-icon"></p>
         </el-tooltip>
       </li>
-      <li @click="setting">
+      <li @click="setting" :hidden="isFullscreen">
         <el-tooltip class="item" placement="bottom">
           <span slot="content">{{$t('message.setting')}}</span>
           <p class="icon-image feature-setting-icon"></p>
         </el-tooltip>
       </li>
-      <li @click="close">
+      <li @click="close" :hidden="isFullscreen">
         <el-tooltip class="item" placement="bottom">
           <span slot="content">{{$t('message.close')}}</span>
           <p class="icon-image feature-close-icon"></p>
@@ -33,7 +33,7 @@ export default {
 
     }
   },
-  props: ['parentId', 'settingName'],
+  props: ['parentId', 'settingName', 'isFullscreen'],
   methods: {
     fullscreen () {
       this.$emit('toggleFullScreen')

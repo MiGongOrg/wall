@@ -3,7 +3,7 @@
     <fs ref="fullscreenVideo" @change="fullscreenChange" :background="fsbackground" class="full-screen">
       <div class="full-screen-content">
         <video :src="video[video.activeName].url" :controls="video[video.activeName].controls" :autoplay="video[video.activeName].autoplay" :loop="video[video.activeName].loop"></video>
-        <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
+        <feature-setting :parentId="parentId" :settingName="settingName" :isFullscreen="fullscreen" @toggleFullScreen="toggleFullScreen"></feature-setting>
       </div>
     </fs>
   </div>

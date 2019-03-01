@@ -5,7 +5,7 @@
         <div class="qrcode-container">
           <img :src="qrcode.url" class="qrcode">
         </div>
-        <feature-setting :parentId="parentId" :settingName="settingName" @toggleFullScreen="toggleFullScreen"></feature-setting>
+        <feature-setting :parentId="parentId" :settingName="settingName" :isFullscreen="fullscreen" @toggleFullScreen="toggleFullScreen"></feature-setting>
       </div>
     </fs>
   </div>
